@@ -1,0 +1,74 @@
+/* -------------------------------------------------------------
+	Name	           : layout.css
+	Site               : designcreations.dk webshop
+	Date	           : April 15th,2011
+	Last Modified date : 
+	
+	Created by Thanh Phong, Pham
+	email : phong.pham@mwc@.vn
+-------------------------------------------------------------- */
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+/* column width*/
+.w75  { width: 75px;}
+.w135 {width: 135px;}
+.w160 {width: 160px;}
+.w210 {width: 210px;}
+.w215 {width: 215px;}
+.w220 {width: 220px;}
+.w240 {width: 240px;}
+.w250 {width: 250px;}
+.w260 {width: 260px;}
+.w310 {width: 310px;}
+.w380 {width: 380px;}
+.w660 {width : 660px;}
+.w700 {width : 700px;}
+
+/*content height */
+.h50 { height: 50px;}
+.h500 { height: 500px;}
+
+/* BOXES DECORATION */
+.rounded {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+}
+
+.box-decor-s1, .box-decor-s1 .right-decor { background:url(../img/sprites/bg_box_decor_01.png) no-repeat top;}
+.box-decor-s1 { height: 196px; background-position: top left; padding-left: 30px; clear:both; width: 667px;}
+.box-decor-s1 .right-decor	{ background-position: top right; padding-right: 30px;}
+.box-decor-s1 .mid-decor	{ background:url(../img/bg_box_decor_01.png) repeat-x top;}
+
+/*clear fix*/
+.clr {clear: both;}
+.fll {float: left;}
+.flr {float: right;}
+.v-extra10 {margin: 10px 0;}
+.first-col {margin-left: 0; }
+.mt10 {margin-top:10px;}
+.pt10 {padding-top:10px;}
+.pt5 {padding-top:5px;}
+.pb10 {padding-bottom: 10px;}
+.pb5 {padding-bottom: 5px;}
+.pd10 {padding: 10px;}
+
+/*table*/
+table {  border-collapse: collapse; width: 660px; margin: 0 auto;}
+tr { border: 1px solid #e0e0e0;}
+tr.even { background: #f5f5f5;}
+tr.first { border: none;}
+th, td { text-align:center; padding: 8px;}
+table .left { text-align:left;}
+table .right { text-align:right;}
+table .button {display: block; float: left; margin: 0 4px;} 
+td.actions { padding-left: 35px;}
+tr.bottom { border: none;}
+tr.bottom td.right { border-bottom: 1px dotted #aeaeae;}
+td strong.total {font-size: 14px;}
+td.last { border: none; text-align: right;}

@@ -1,0 +1,95 @@
+#detailcart{
+	border: 1px solid #dfdfdf;
+}
+
+#detailcart .header{
+	background: #dfdfdf;
+	color: white;
+	font-weight: bold;
+}
+
+#detailcart td{
+	border: 1px solid #dfdfdf;
+	padding: 3px;
+}
+
+.number{
+	color: #DA251E;
+	font-weight: bold;
+}
+
+.number a , .number a:visited {
+	color: #DA251E;
+	font-weight: bold;
+}
+
+.number a:hover{
+	color: #DA251E;
+	font-weight: bold;
+}
+
+.binhluan{
+	color: white;
+	padding:5px;
+	background: #CCCCCC;
+	border: 1px solid #dfdfdf;
+	font-weight: bold;
+	text-align:center;
+}
+
+#bltable{
+	margin-bottom: 8px;
+}
+
+#bltable .mucchan {
+	border-bottom: 1px dotted #666;
+	line-height: 18px;
+	padding: 2px 0 5px 5px;
+}
+
+#bltable .mucle {
+	border-bottom: 1px dotted #666;
+	line-height: 18px;
+	padding: 2px 0 5px 5px;
+	background: #dfdfdf;
+}
+
+.pr_name{
+	color: #DA251E;
+	font-weight: bold;
+	font-size:15px;
+}
+
+.title{
+	font-weight: bold;
+	
+}
+
+.content{
+	padding:0 0 0 10px;
+}
+
+.buy{
+	padding:5px 0; 
+	text-align: center; 
+	border:1px solid #6FBFDF; 
+	width:80px;
+	background:#DA251E;
+}
+
+.buy a , .buy a:visited{
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+}
+
+.cover {
+	border: 1px solid #dfdfdf;
+	padding:0 5px 5px 5px;
+}
+
+.tensp , .tensp a, .tensp a:visited{
+	font-weight: bold;
+	text-decoration: none;
+}

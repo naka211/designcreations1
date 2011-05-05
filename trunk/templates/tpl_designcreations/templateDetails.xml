@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>Design Creations Template</name>
+	<version>1.0.0</version>
+	<creationDate>05/02/2011</creationDate>
+	<author>nttrung</author>
+	<authorEmail>thanh.trung@mwc.vn</authorEmail>
+	<authorUrl>http://mwc.vn</authorUrl>
+	<copyright></copyright>
+	<license>MWC</license>
+	<description>Design Creations TEMPLATE DESCRIPTION</description>
+<files>
+		<filename>css/index.html</filename>
+		<filename>favicon.ico</filename>
+		<filename>html/com_content/article/default.php</filename>
+		<filename>html/com_content/article/index.html</filename>
+		<filename>html/com_content/category/blog_item.php</filename>
+		<filename>html/com_content/category/index.html</filename>
+		<filename>html/com_content/frontpage/default_item.php</filename>
+		<filename>html/com_content/frontpage/index.html</filename>
+		<filename>html/com_content/index.html</filename>
+		<filename>html/com_content/section/blog_item.php</filename>
+		<filename>html/com_content/section/index.html</filename>
+		<filename>html/index.html</filename>
+		<filename>html/modules.php</filename>
+		<filename>html/mod_banners/default.php</filename>
+		<filename>html/mod_banners/index.html</filename>
+		<filename>html/mod_login/default.php</filename>
+		<filename>html/mod_login/index.html</filename>
+		<filename>html/pagination.php</filename>
+		<filename>images/index.html</filename>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+	</files>
+	<images>
+		<filename>images/banner.jpg</filename>
+		<filename>template_thumbnail.png</filename>
+	</images>
+	<css>
+		<filename>css/css-template.css.css</filename>
+	</css>
+	<languages>
+		<language tag="en-GB">en-GB.tpl_hoanlong.ini</language>
+	</languages>
+	<administration>
+    	<languages>
+			<language tag="en-GB">admin/en-GB.tpl_hoanlong.ini</language>
+		</languages>
+    </administration>
+
+	<positions>
+		<position>menu</position>
+		<position>cart</position>
+		<position>left</position>
+		<position>right</position>
+		<position>top</position>
+		<position>footer</position>
+		
+	</positions>
+
+	
+</install>

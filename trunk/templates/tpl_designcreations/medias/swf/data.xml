@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?><index>
+<settings
+		bannerWidth = "950"
+		bannerHeight = "238"
+		bannerHorizontalMargin = "0"
+		bannerVerticalMargin = "0"
+		bannerBackGroundAlpha = "100"
+		bannerBackGroundColor = "0xffffff"
+
+		displayMenu = "yes"
+		displayInfos = "yes"
+		displayButtonNextPrev = "yes"
+		displayButtonSlideshow = "no"
+
+		menuXposition = "800"
+		menuYposition = "210"
+		menuButtonsSpace = "3"
+		menuButtonsVisible = "4"
+		menuOrientation = "horizontal"
+
+		buttonNextXposition = "908"
+		buttonNextYpoistion = "220"
+		buttonPrevXposition = "785"
+		buttonPrevYposition = "220"
+		buttonSlideshowXposition = "28"
+		buttonSlideshowYposition = "28"
+		buttonsIconColor = ""
+		buttonsBackGroundColor = "0x0052c2"
+		buttonsRotate = "no"
+
+		slideshowAutostart = "yes"
+		slideshowAnimationIconColor = "0x000000"
+		slideshowAnimationBackGroundColor = "0x000000"
+
+		transitionType = "9"
+		transitionEasingDuration = "1"
+		transitionEasingType = "easeInOutExpo"
+
+		infosXposition = "0"
+		infosYposition = "-1000"
+		infosWidth = "500"
+		infosHeight = "70"
+		infosBackGroundAlpha = "0"
+		infosBackGroundColor = "0xc70000"
+
+		titleXposition = "10"
+		titleYposition = "10"
+		titleWidth = "480"
+		titleTextAlign = "left"
+
+		descriptionXposition = "-1000"
+		descriptionYposition = "-1000"
+		descriptionWidth = "0"
+		descriptionTextAlign = "none"
+
+		preloaderXposition = "-1000"
+		preloaderYpoistion = "-1000"
+	/>	<items>
+		<item>
+			<itemSettings
+				buttonsIconColor = "0xffffff"
+				buttonsBackGroundColor = "0x0052c2"
+				infoBackGroundColor = ""
+				slideshowInterval = "5"
+				slideshowAnimationIconColor = "0xc70000"
+				slideshowAnimationBackGroundColor = "0x000000"
+				targetLink = ""
+			/>
+			<file>../images/1.jpg</file>
+			<title><![CDATA[Click the preview image below or download ]]></title>
+			<description><![CDATA[Recently compiled a list of the 19 most popular fonts according to usage by graphic designers from all over the web]]></description>
+			<link><![CDATA[]]></link>
+		</item>
+		<item>
+			<itemSettings
+				buttonsIconColor = "0xffffff"
+				buttonsBackGroundColor = "0x0052c2"
+				infoBackGroundColor = "0xf97dfe"
+				slideshowInterval = "5"
+				slideshowAnimationIconColor = "0xc70000"
+				slideshowAnimationBackGroundColor = "0x000000"
+				targetLink = ""
+			/>
+			<file>../images/2.jpg</file>
+			<title><![CDATA[You may love some of these combinations ]]></title>
+			<description><![CDATA[Recently compiled a list of the 19 most popular fonts according to usage by graphic designers from all over the web]]></description>
+			<link><![CDATA[]]></link>
+		</item>
+		<item>
+			<itemSettings
+				buttonsIconColor = "0xffffff"
+				buttonsBackGroundColor = "0x0052c2"
+				infoBackGroundColor = "0xe6d332"
+				slideshowInterval = "5"
+				slideshowAnimationIconColor = "0xc70000"
+				slideshowAnimationBackGroundColor = "0x000000"
+				targetLink = ""
+			/>
+			<file>../images/3.jpg</file>
+			<title><![CDATA[What we have here is that list of 19 top fonts ]]></title>
+			<description><![CDATA[Recently compiled a list of the 19 most popular fonts according to usage by graphic designers from all over the web]]></description>
+			<link><![CDATA[]]></link>
+		</item>
+<item>
+			<itemSettings
+				buttonsIconColor = "0xffffff"
+				buttonsBackGroundColor = "0x0052c2"
+				infoBackGroundColor = "0xe6d332"
+				slideshowInterval = "5"
+				slideshowAnimationIconColor = "0xc70000"
+				slideshowAnimationBackGroundColor = "0x000000"
+				targetLink = ""
+			/>
+			<file>../images/4.jpg</file>
+			<title><![CDATA[What we have here is that list of 19 top fonts ]]></title>
+			<description><![CDATA[Recently compiled a list of the 19 most popular fonts according to usage by graphic designers from all over the web]]></description>
+			<link><![CDATA[]]></link>
+		</item>
+
+	</items>
+</index>
