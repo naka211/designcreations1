@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="widthtooltip" default="150" size="10" type="text" label="Chiều rộng của TOOLTIP" description="Chiều rộng của TOOLTIP khi rê chuột lên sản phẩm" />
+		<param name="productperrow" default="20" size="10" type="text" label="Số sản phẩm trên một trang" description="Số sản phẩm hiển thị trên một trang" />
+		<param name="imgpath" default="components/com_ecommerce/imgupload/" size="70" type="text" label="Đường dẫn upload hình" description="Đường dẫn upload hình" />
+	</params>
+</config>

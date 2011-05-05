@@ -1,0 +1,37 @@
+/* -------------------------------------------------------------
+	Name	           : window_style.css
+	Site               : designcreations.dk webshop
+	Date	           : April 15th,2011
+	Last Modified date : 
+	
+	Created by Thanh Phong, Pham
+	email : phong.pham@mwc@.vn
+-------------------------------------------------------------- */
+body {background: url(../img/bg_body.jpg); margin: 0; padding: 0; font: normal 12px Arial, Helvetica, sans-serif; }
+
+p {color: #323232;}
+
+.wrapper { padding: 20px; width: 600px; margin: auto;}
+
+.logo { text-align: center; padding: 10px 0 8px 0; float: left;}
+
+.slogan { text-align: center; float: right; width: 400px; margin-top: 60px;}
+
+.content-ctn { background: #fff; border: 1px solid #aeaeae; padding: 20px; clear: both;}
+
+a{
+	font-weight:bold;
+	color:#005CA3;
+	text-decoration:none;
+	padding: 5px 0;
+	display:block;
+}
+
+a:hover{text-decoration:underline;}
+
+strong {color: #323232; }
+strong.special {font-size: 14px; color: #0078dd;}
+
+
+
+

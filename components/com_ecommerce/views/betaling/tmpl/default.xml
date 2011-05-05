@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Payment process layout">
+		<message>
+			<![CDATA[TYPEROKDOWNLOADSFILE]]>
+		</message>
+	</layout>
+	<state>
+		<name>Payment process layout</name>
+	</state>
+</metadata>

@@ -1,0 +1,111 @@
+/* -------------------------------------------------------------
+	Name	           : typography.css
+	Site               : designcreations.dk webshop
+	Date	           : April 15th,2011
+	Last Modified date : 
+	
+	Created by Thanh Phong, Pham
+	email : phong.pham@mwc@.vn
+-------------------------------------------------------------- */
+
+/* --------------------------------------------------------------
+
+   typography.css
+   * Sets up some sensible default typography.
+
+-------------------------------------------------------------- */
+
+/* Default font settings.
+   The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+body {
+  font-size:100%;
+  color: #323232;
+  background: #fff;
+  font: normal 12px Arial, Helvetica, sans-serif;
+  text-shadow: 0px 1px 1px #fff;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6 {font-weight: bold; color: #3b3b3b; }
+
+h1,h2,h3, h4 {font-size: 14px;}
+
+h1 { line-height: 18px; margin-bottom: 5px;/*color: #0093dd;*/ }
+h2 { margin: 0px; padding: 0 0 10px 0; line-height: 1em; }
+h3 { margin: 10px 0 5px;}
+h4 { line-height: 18px; margin-bottom: 5px; }
+h5 { font-size: 0.5em; font-weight: bold; margin-bottom: 1.5em; }
+h6 { font-size: 0.5em; font-weight: bold; }
+
+h1 img, h2 img, h3 img,
+h4 img, h5 img, h6 img {
+  margin-right: 5px;
+  vertical-align:middle;
+}
+
+h1.main-title { text-transform: uppercase; color: #0093dd; width: 660px; margin: 0 auto 5px auto; padding-top: 5px;}
+
+
+/* Text elements
+-------------------------------------------------------------- */
+p           { margin: 0 0 0.5em; line-height: 1.5em; }
+
+a           { color: #0093dd; text-decoration: none; cursor: pointer; outline: none ;}
+a:focus,
+a:hover     { text-decoration: underline; outline: none; }
+
+blockquote  { margin: 1.5em; color: #fff; font-style: italic; }
+strong,dfn	{ font-weight: bold; }
+em,dfn      { font-style: italic; }
+sup, sub    { line-height: 0; }
+
+abbr,
+acronym     { border-bottom: 1px dotted #666; }
+address     { margin: 0 0 1.5em; font-style: italic; }
+del         { color:#666; }
+
+pre         { margin: 1.5em 0; white-space: pre; }
+pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+
+strong.hilite_txt { color: #05A1E4;}
+
+.gradient_txt {position: relative; text-shadow: 1px 1px 2px #aaa;} 
+.gradient_txt span {display: block; background:url(../images/bg_gradient.png) repeat-x top; position: absolute; top: 3px; height: 10px; z-index: 10; width: 99%;}
+
+/* Lists
+-------------------------------------------------------------- */
+
+ul, ol      { margin: 0.5em 1em 1em 0; padding-left: 1.5em; line-height: 18px; }
+
+ol          { list-style-type: decimal; }
+
+dl          { margin: 0 0 1.5em 0; }
+dd          { margin-left: 1.5em;}
+
+/* Tables
+-------------------------------------------------------------- */
+/* 
+	Because of the need for padding on TH and TD, the vertical rhythm 
+	on table cells has to be 27px, instead of the standard 18px or 36px 
+	of other elements. 
+ */ 
+table       { margin-bottom: 5px; width:100%; }
+th          { font-weight: bold; }
+thead th    { background: #c3d9ff; }
+th,td,caption { padding: 5px 10px 5px 8px; }
+
+tfoot       { font-style: italic; }
+caption     { background: #eee; }
+
+.hidden_txt {	
+	text-indent: -9999px;
+	line-height: 0;
+	font-size: 0;
+}
+
+.red 	{color: red;}
+.blue 	{ color: #0093dd;}
+.orange { color: #ed8b00;}
+.gray 	{ color: #808080;}

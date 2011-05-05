@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.5.0">
+	<name>Ecommerce</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>2009</creationDate>
+	<author>Lê Đức Trí</author>
+	<authorEmail>ldt11d@gmail.com</authorEmail>
+	<authorUrl>http://iti.vn</authorUrl>
+	<copyright>http://iti.vn</copyright>
+	<license>Demo Edition</license>
+	<!--  The version string is recorded in the components table -->
+	<version>0.0.1</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>Thuơng mại trực tuyến mặt hàng sản phẩm</description>
+	<installfile>install.ecommerce.php</installfile>
+	<uninstallfile>uninstall.ecommerce.php</uninstallfile>
+	<!-- Site Main File Copy Section -->
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>controller.php</filename>
+		<filename>router.php</filename>	
+		<filename>ecommerce.php</filename>	
+		<filename>styles.css</filename>
+		<filename>prsupload/index.html</filename>	
+		<filename>imgupload/index.html</filename>		
+		<filename>views/index.html</filename>
+		<filename>views/list/index.html</filename>
+		<filename>views/list/view.html.php</filename>
+		<filename>views/list/metadata.xml</filename>		
+		<filename>views/list/tmpl/index.html</filename>
+		<filename>views/list/tmpl/default.php</filename>
+		<filename>views/list/tmpl/default.xml</filename>
+		<filename>views/detail/index.html</filename>
+		<filename>views/detail/view.html.php</filename>
+		<filename>views/detail/metadata.xml</filename>		
+		<filename>views/detail/tmpl/index.html</filename>
+		<filename>views/detail/tmpl/default.php</filename>
+		<filename>views/detail/tmpl/default.xml</filename>
+		<filename>views/cart/index.html</filename>
+		<filename>views/cart/view.html.php</filename>
+		<filename>views/cart/metadata.xml</filename>		
+		<filename>views/cart/tmpl/index.html</filename>
+		<filename>views/cart/tmpl/default.php</filename>
+		<filename>views/cart/tmpl/default.xml</filename>
+		<filename>views/cart/index.html</filename>
+		<filename>views/detailcart/view.html.php</filename>
+		<filename>views/detailcart/metadata.xml</filename>		
+		<filename>views/detailcart/tmpl/index.html</filename>
+		<filename>views/detailcart/tmpl/default.php</filename>
+		<filename>views/cart/tmpl/default.xml</filename>
+		<filename>views/buyer/index.html</filename>
+		<filename>views/buyer/view.html.php</filename>
+		<filename>views/buyer/metadata.xml</filename>		
+		<filename>views/buyer/tmpl/index.html</filename>
+		<filename>views/buyer/tmpl/default.php</filename>
+		<filename>views/buyer/tmpl/default.xml</filename>
+		<filename>view/cart/viewcart.php</filename>
+		<filename>imgs/delete.gif</filename>
+		<filename>imgs/arrow-back.gif</filename>
+		<filename>imgs/arrow-forw.gif</filename>
+		<filename>models/index.html</filename>
+		<filename>models/list.php</filename>
+		<filename>models/detail.php</filename>
+		<filename>models/cart.php</filename>
+		<filename>models/detailcart.php</filename>
+		<filename>models/buyer.php</filename>
+	</files>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">uninstall.sql</file>
+		</sql>
+	</uninstall>	
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu>Quản lí Thuơng mại</menu>
+		<submenu>
+			<menu controller="sessions">Phân mục sản phẩm</menu>
+			<menu controller="categories">Phân lọai sản phẩm</menu>
+			<menu controller="companies">Hãng sản phẩm</menu>
+			<menu controller="products">Sản phẩm</menu>
+			<menu controller="images">Hình ảnh sản phẩm</menu>
+			<menu controller="buyers">Quản lí khách hàng</menu>
+
+
+		</submenu>
+		<files folder="admin">
+	<!-- Site Main File Copy Section -->
+			<filename>index.html</filename>
+			<filename>admin.ecommerce.php</filename>
+			<filename>install.ecommerce.php</filename>
+			<filename>uninstall.ecommerce.php</filename>
+			<filename>tables/index.html</filename>
+			<filename>tables/session.php</filename>
+			<filename>tables/category.php</filename>
+			<filename>tables/product.php</filename>
+			<filename>tables/company.php</filename>
+			<filename>tables/topic.php</filename>
+			<filename>tables/image.php</filename>
+			<filename>tables/buyer.php</filename>
+			<filename>tables/cart.php</filename>
+			<filename>controllers/default.php</filename>
+			<filename>controllers/sessions.php</filename>
+			<filename>controllers/categories.php</filename>
+			<filename>controllers/products.php</filename>
+			<filename>controllers/topics.php</filename>
+			<filename>controllers/companies.php</filename>
+			<filename>controllers/buyers.php</filename>
+			<filename>controllers/carts.php</filename>
+			<filename>controllers/images.php</filename>
+			<filename>controllers/index.html</filename>
+			<filename>models/sessions.php</filename>
+			<filename>models/session.php</filename>
+			<filename>models/categories.php</filename>
+			<filename>models/category.php</filename>
+			<filename>models/products.php</filename>
+			<filename>models/product.php</filename>
+			<filename>models/companies.php</filename>
+			<filename>models/company.php</filename>
+			<filename>models/topics.php</filename>
+			<filename>models/topic.php</filename>
+			<filename>models/buyers.php</filename>
+			<filename>models/buyer.php</filename>
+			<filename>models/carts.php</filename>
+			<filename>models/cart.php</filename>
+			<filename>models/images.php</filename>
+			<filename>models/image.php</filename>
+			<filename>models/index.html</filename>
+			<filename>views/sessions/index.html</filename>	
+			<filename>views/sessions/view.html.php</filename>
+			<filename>views/sessions/tmpl/index.html</filename>				
+			<filename>views/sessions/tmpl/default.php</filename>	
+			<filename>views/session/index.html</filename>	
+			<filename>views/session/view.html.php</filename>
+			<filename>views/session/tmpl/index.html</filename>				
+			<filename>views/session/tmpl/form.php</filename>
+			<filename>views/categories/index.html</filename>	
+			<filename>views/categories/view.html.php</filename>
+			<filename>views/categories/tmpl/index.html</filename>				
+			<filename>views/categories/tmpl/default.php</filename>
+			<filename>views/category/index.html</filename>	
+			<filename>views/category/view.html.php</filename>
+			<filename>views/category/tmpl/index.html</filename>				
+			<filename>views/category/tmpl/form.php</filename>
+			<filename>views/products/index.html</filename>	
+			<filename>views/products/view.html.php</filename>
+			<filename>views/products/tmpl/index.html</filename>				
+			<filename>views/products/tmpl/default.php</filename>
+			<filename>views/product/index.html</filename>	
+			<filename>views/product/view.html.php</filename>
+			<filename>views/product/tmpl/index.html</filename>				
+			<filename>views/product/tmpl/form.php</filename>
+			<filename>views/companies/index.html</filename>	
+			<filename>views/companies/view.html.php</filename>
+			<filename>views/companies/tmpl/index.html</filename>				
+			<filename>views/companies/tmpl/default.php</filename>
+			<filename>views/company/index.html</filename>	
+			<filename>views/company/view.html.php</filename>
+			<filename>views/company/tmpl/index.html</filename>				
+			<filename>views/company/tmpl/form.php</filename>
+			<filename>views/topics/index.html</filename>	
+			<filename>views/topics/view.html.php</filename>
+			<filename>views/topics/tmpl/index.html</filename>				
+			<filename>views/topics/tmpl/default.php</filename>
+			<filename>views/images/index.html</filename>	
+			<filename>views/images/view.html.php</filename>
+			<filename>views/images/tmpl/index.html</filename>				
+			<filename>views/images/tmpl/default.php</filename>
+			<filename>views/image/index.html</filename>	
+			<filename>views/image/view.html.php</filename>
+			<filename>views/image/tmpl/index.html</filename>				
+			<filename>views/image/tmpl/form.php</filename>
+			<filename>views/buyers/index.html</filename>	
+			<filename>views/buyers/view.html.php</filename>
+			<filename>views/buyers/tmpl/index.html</filename>				
+			<filename>views/buyers/tmpl/default.php</filename>
+			<filename>views/carts/index.html</filename>	
+			<filename>views/carts/view.html.php</filename>
+			<filename>views/carts/tmpl/index.html</filename>				
+			<filename>views/carts/tmpl/default.php</filename>
+			<filename>views/cart/index.html</filename>	
+			<filename>views/cart/view.html.php</filename>
+			<filename>views/cart/tmpl/index.html</filename>				
+			<filename>views/cart/tmpl/form.php</filename>
+			<filename>install.sql</filename>
+			<filename>uninstall.sql</filename>
+		</files>		
+	</administration>
+</install>
