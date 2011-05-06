@@ -22,6 +22,106 @@ $template_dir = "templates/tpl_designcreations/";
 			$('#pprice').html(pprice);
 			$('#price').html(price);
 		}
+		
+		function submitLogoForm(){
+			if(($('#logo_name').val() == 'Navn på logo') || ($('#logo_name').val() == '')){
+				alert('Angiv logo navn');
+				$('#logo_name').focus();
+				return false;
+			}
+			
+			if(($('#slogan').val() == 'Slogan') || ($('#slogan').val() == '')){
+				alert('Angiv slogan');
+				$('#slogan').focus();
+				return false;
+			}
+			
+			if($('#profession').val() == 0){
+				alert('Vælg venligst erhverv');
+				$('#profession').focus();
+				return false;
+			}
+			
+			if(($('#logo_info').val() == 'Giv en kort beskrivelse af din virksomhed/organisation, hvad du tilbyder. Du kan ogsa angive andre ideer.') && ($('#logo_request_file').val() == '') ){
+				alert('Angiv anmodning');
+				$('#logo_info').focus();
+				return false;
+			}
+			
+			$('#logoInfoForm').submit();
+		}
+		
+		function submitCardForm(){
+			if($('#cardType').val() == 0 ){
+				alert('Vælg venligst en kort format');
+				$('#cardType').focus();
+				return false;
+			}
+			
+			if(($('#card_info').val() == 'Front &amp; Bagsiden kortoplysninger(Giv os disse oplysninger, du ønsker at være på kort: Firmanavn, Slogan (hvis nogen), Fulde navn (Navn på kort), Stillingsbetegnelse, Firma Adresse, Privat Adresse, telefon, email, hjemmeside, profession...') && ($('#card_request_file').val() == '') ){
+				alert('Angiv anmodning');
+				$('#card_info').focus();
+				return false;
+			}
+			
+			if($('#card_logo_file').val() == ''){
+				alert('Upload logo fil');
+				$('#card_logo_file').focus();
+				return false;
+			}
+			
+			$('#cardInfoForm').submit();
+		}
+		
+		function submitLetterForm(){
+			if($('#brevpapirType').val() == 0 ){
+				alert('Vælg et produkt');
+				$('#brevpapirType').focus();
+				return false;
+			}
+			
+			if(($('#letter_info').val() == 'Giv os disse produkt oplysninger, ideer, krav...') && ($('#letter_request_file').val() == '') ){
+				alert('Angiv anmodning');
+				$('#letter_info').focus();
+				return false;
+			}
+			
+			if($('#letter_logo_file').val() == ''){
+				alert('Upload logo fil');
+				$('#letter_logo_file').focus();
+				return false;
+			}
+			
+			$('#brevpapirInfoForm').submit();
+		}
+		
+		function submitBrochureForm(){
+			if($('#brochureType').val() == 0 ){
+				alert('Vælg et produkt');
+				$('#brochureType').focus();
+				return false;
+			}
+			
+			if(($('#brochure_info').val() == 'Giv os disse produkt oplysninger, ideer, krav...') && ($('#brochure_request_file').val() == '') ){
+				alert('Angiv anmodning');
+				$('#brochure_info').focus();
+				return false;
+			}
+			
+			if($('#brochure_logo_file').val() == ''){
+				alert('Upload logo fil');
+				$('#brochure_logo_file').focus();
+				return false;
+			}
+			
+			$('#brochureInfoForm').submit();
+		}
+		
+		function submitPackageForm(){
+			if(!$("input[name='package']:checked").val()){
+				alert('Vælg venligst en pakke');
+			}
+		}
     </script>
     <h3><img src="<?php echo $template_dir;?>img/bestil_nu_title.png" alt="Bestil Nu !" /></h3>
     <div class="sidebar-content w226">
@@ -40,10 +140,10 @@ $template_dir = "templates/tpl_designcreations/";
             <div id="logoForm" class="order-form">
                 <form id="logoInfoForm" action="index.php" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <input type="text" class="text rounded w215" value="Navn på logo" name="logo_name" />
-                        <input type="text" class="text rounded w215" value="Slogan" name="slogan" />
+                        <input type="text" class="text rounded w215" value="Navn på logo" name="logo_name"  id="logo_name"/>
+                        <input type="text" class="text rounded w215" value="Slogan" name="slogan" id="slogan" />
                         <select id="profession" class="rounded" name="profession">
-                            <option selected="selected">Vælg din branche / erhverv</option>
+                            <option value="0" selected="selected">Vælg din branche / erhverv</option>
                             <option value="Builder/Carpenter">Builder/Carpenter</option>
                             <option value="Catering/Food">Catering/Food </option>
                             <option value="Cleaner">Cleaner </option>
@@ -71,16 +171,16 @@ $template_dir = "templates/tpl_designcreations/";
                             <option value="Travel &amp; Tourism">Travel &amp; Tourism</option>
                             <option value="Other">Other</option>
                         </select>
-                        <textarea class="text rounded w215" rows="7" cols="10" name="info">Giv en kort beskrivelse af din virksomhed/organisation, hvad du tilbyder. Du kan ogsa angive andre ideer.</textarea>
+                        <textarea class="text rounded w215" rows="7" cols="10" name="info" id="logo_info">Giv en kort beskrivelse af din virksomhed/organisation, hvad du tilbyder. Du kan ogsa angive andre ideer.</textarea>
                         <p class="file-input clr">
                             <label>Vedhæfte dine krav i en fil :</label>
-                            <input class="file rounded clr" type="file" value="" name="request_file" />
+                            <input class="file rounded clr" type="file" value="" name="request_file" id="logo_request_file" />
                             <em>(.doc, .ppt,.pdf, .dot - Max: 5MB)</em>
                         </p>
                         <p class="total-price fll clr">Total kr. <?php echo $product[0]->promotion_price;?>,- (Før kr <?php echo $product[0]->price;?>,-)</p>
-                        <a class="add-cart-btn hidden_txt" href="indkoebskurv.html">Tilføj denne ordre til kurv</a>
+                        <input type="button" class="add-cart-btn hidden_txt" style="border:none;cursor:pointer; margin:0;" onclick="submitLogoForm();" />
                         <span class="eller hidden_txt">Eller</span>
-                        <a class="buy-btn hidden_txt" href="indkoebskurv.html">Køb Nu !</a>
+                        <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitLogoForm();" />
                     </fieldset>
                     <input type="hidden" name="option" value="com_ecommerce" />
                     <input type="hidden" name="task" value="addcart" />
@@ -96,26 +196,26 @@ $template_dir = "templates/tpl_designcreations/";
                 <form id="cardInfoForm" action="index.php" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <select id="cardType" class="rounded" name="card">
-                            <option selected="selected">Vælg et kort format</option>
+                            <option value="0" selected="selected">Vælg et kort format</option>
                             <option value='Vandret kort format (3,50" x 2,00")'>Vandret kort format (3,50" x 2,00")</option>
                             <option value='Lodret kort format (2,00" x 3,50")'>Lodret kort format (2,00" x 3,50")</option>
                         </select>
-                        <textarea class="text rounded w215" rows="7" cols="10" name="info">Front &amp; Bagsiden kortoplysninger(Giv os disse oplysninger, du ønsker at være på kort: Firmanavn, Slogan (hvis nogen), Fulde navn (Navn på kort), Stillingsbetegnelse, Firma Adresse, Privat Adresse, telefon, email, hjemmeside, profession...</textarea>
+                        <textarea class="text rounded w215" rows="7" cols="10" name="info" id="card_info">Front &amp; Bagsiden kortoplysninger(Giv os disse oplysninger, du ønsker at være på kort: Firmanavn, Slogan (hvis nogen), Fulde navn (Navn på kort), Stillingsbetegnelse, Firma Adresse, Privat Adresse, telefon, email, hjemmeside, profession...</textarea>
                         <p class="file-input clr">
                             <label>Vedhæfte dine krav i en fil :</label>
-                            <input class="file rounded clr" type="file" value="" name="request_file" />
+                            <input class="file rounded clr" type="file" value="" name="request_file" id="card_request_file" />
                             <em>(.doc, .ppt,.pdf, .dot - Max: 5MB)</em>
                         </p>
                         <p class="file-input clr">
                             <label>Vedhæft dit logo :</label>
-                            <input class="file rounded clr" type="file" value="" name="logo_file" />
+                            <input class="file rounded clr" type="file" value="" name="logo_file" id="card_logo_file" />
                             <em>(.pdf, .eps, .ai, .psd, .jpg, .svg - Max: 5MB)</em>
                         </p>
-                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="">Bestil nu</a></p>
+                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="index.php">Bestil nu</a></p>
                         <p class="total-price fll clr">Total kr. <?php echo $product[1]->promotion_price;?>,- (Før kr <?php echo $product[1]->price;?>,-)</p>
-                        <a class="add-cart-btn hidden_txt" href="indkoebskurv.html">Tilføj denne ordre til kurv</a>
+                        <input type="button" class="add-cart-btn hidden_txt" style="border:none;cursor:pointer; margin:0;" onclick="submitCardForm();" />
                         <span class="eller hidden_txt">Eller</span>
-                        <a class="buy-btn hidden_txt" href="indkoebskurv.html">Køb Nu !</a>
+                        <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitCardForm();" />
                     </fieldset>
                     <input type="hidden" name="option" value="com_ecommerce" />
                     <input type="hidden" name="task" value="addcart" />
@@ -130,26 +230,26 @@ $template_dir = "templates/tpl_designcreations/";
                 <form id="brevpapirInfoForm" action="index.php" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <select id="brevpapirType" class="rounded" name="letter">
-                            <option selected="selected">Vælg et produkt</option>
+                            <option value="0" selected="selected">Vælg et produkt</option>
                             <option value="Letterhead">Letterhead</option>
                             <option value="Envelop">Envelop</option>
                         </select>
-                        <textarea class="text rounded w215" rows="7" cols="10" name="info">Giv os disse produkt oplysninger, ideer, krav...</textarea>
+                        <textarea class="text rounded w215" rows="7" cols="10" name="info" id="letter_info">Giv os disse produkt oplysninger, ideer, krav...</textarea>
                         <p class="file-input clr">
                             <label>Vedhæfte dine krav i en fil :</label>
-                            <input class="file rounded clr" type="file" value="" name="request_file" />
+                            <input class="file rounded clr" type="file" value="" name="request_file" id="letter_request_file" />
                             <em>(.doc, .ppt,.pdf, .dot - Max: 5MB)</em>
                         </p>
                         <p class="file-input clr">
                             <label>Vedhæft dit logo :</label>
-                            <input class="file rounded clr" type="file" value="" name="logo_file" />
+                            <input class="file rounded clr" type="file" value="" name="logo_file" id="letter_logo_file" />
                             <em>(.pdf, .eps, .ai, .psd, .jpg, .svg - Max: 5MB)</em>
                         </p>
-                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="">Bestil nu</a></p>
+                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="index.php">Bestil nu</a></p>
                         <p class="total-price fll clr">Total kr. <?php echo $product[2]->promotion_price;?>,- (Før kr <?php echo $product[2]->price;?>,-)</p>
-                        <a class="add-cart-btn hidden_txt" href="indkoebskurv.html">Tilføj denne ordre til kurv</a>
+                        <input type="button" class="add-cart-btn hidden_txt" style="border:none;cursor:pointer; margin:0;" onclick="submitLetterForm();" />
                         <span class="eller hidden_txt">Eller</span>
-                        <a class="buy-btn hidden_txt" href="indkoebskurv.html">Køb Nu !</a>
+                        <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitLetterForm();" />
                     </fieldset>
                     <input type="hidden" name="option" value="com_ecommerce" />
                     <input type="hidden" name="task" value="addcart" />
@@ -164,27 +264,27 @@ $template_dir = "templates/tpl_designcreations/";
                 <form id="brochureInfoForm" action="index.php" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <select id="brochureType" class="rounded" name="brochure">
-                            <option selected="selected">Vælg et produkt</option>
+                            <option value="0" selected="selected">Vælg et produkt</option>
                             <option value="A4 Vandret Brochure (Ingen fold)">A4 Vandret Brochure (Ingen fold)</option>
                             <option value="A4 Vandret Brochure (Fold)">A4 Vandret Brochure (Fold)</option>
                             <option value="A4 Lodret Brochure">A4 Lodret Brochure</option>
                         </select>
-                        <textarea class="text rounded w215" rows="7" cols="10" name="info">Giv os disse produkt oplysninger, ideer, krav...</textarea>
+                        <textarea class="text rounded w215" rows="7" cols="10" name="info" id="brochure_info">Giv os disse produkt oplysninger, ideer, krav...</textarea>
                         <p class="file-input clr">
                             <label>Vedhæfte dine krav i en fil :</label>
-                            <input class="file rounded clr" type="file" value="" name="request_file" />
+                            <input class="file rounded clr" type="file" value="" name="request_file" id="brochure_request_file" />
                             <em>(.doc, .ppt,.pdf, .dot - Max: 5MB)</em>
                         </p>
                         <p class="file-input clr">
                             <label>Vedhæft dit logo :</label>
-                            <input class="file rounded clr" type="file" value="" name="logo_file" />
+                            <input class="file rounded clr" type="file" value="" name="logo_file" id="brochure_logo_file" />
                             <em>(.pdf, .eps, .ai, .psd, .jpg, .svg - Max: 5MB)</em>
                         </p>
-                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="">Bestil nu</a></p>
+                        <p class="logo-link fll clr">Har ikke fået et logo endnu? <a href="index.php">Bestil nu</a></p>
                         <p class="total-price fll clr">Total kr. <?php echo $product[3]->promotion_price;?>,- (Før kr <?php echo $product[3]->price;?>,-)</p>
-                        <a class="add-cart-btn hidden_txt" href="indkoebskurv.html">Tilføj denne ordre til kurv</a>
+                        <input type="button" class="add-cart-btn hidden_txt" style="border:none;cursor:pointer; margin:0;" onclick="submitBrochureForm();" />
                         <span class="eller hidden_txt">Eller</span>
-                        <a class="buy-btn hidden_txt" href="indkoebskurv.html">Køb Nu !</a>
+                        <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitBrochureForm();" />
                     </fieldset>
                     <input type="hidden" name="option" value="com_ecommerce" />
                     <input type="hidden" name="task" value="addcart" />
@@ -195,12 +295,12 @@ $template_dir = "templates/tpl_designcreations/";
             </div>
             <!--package form-->
             <div id="packageForm" class="order-form">
-                <form id="packageSelectionForm" action="" method="post">
+                <form id="packageSelectionForm" action="index.php" method="post">
                     <fieldset>
                         <div class="field">
                         	<?php foreach($packages as $package){?>
                             <label>
-                                <input class="radio-input" type="radio" name="package" value="<?php echo $package->id?>" onclick="changeMoney(<?php echo $package->promotion_price?>,<?php echo $package->price?>)" />
+                                <input class="radio-input" type="radio" name="package" id="package" value="<?php echo $package->id?>" onclick="changeMoney(<?php echo $package->promotion_price?>,<?php echo $package->price?>)" />
                                 <span>
                                     <img src="components/com_ecommerce/imgupload/<?php echo $package->image;?>" alt="<?php echo $package->name;?>" />
                                     <strong class="blue" style="text-transform:uppercase;"><?php echo $package->name;?></strong>
@@ -213,10 +313,12 @@ $template_dir = "templates/tpl_designcreations/";
                             <?php }?>                            
                         </div>
                         <p class="total-price fll clr">Total kr. <span id="pprice">0</span>,- (Før kr <span id="price">0</span>,-)</p>
-                        <a class="add-cart-btn hidden_txt" href="indkoebskurv.html">Tilføj denne ordre til kurv</a>
+                        <input type="button" class="add-cart-btn hidden_txt" style="border:none;cursor:pointer; margin:0;" onclick="submitPackageForm();" />
                         <span class="eller hidden_txt">Eller</span>
-                        <a class="buy-btn hidden_txt" href="indkoebskurv.html">Køb Nu !</a>
+                        <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitPackageForm();" />
                     </fieldset>
+                    <input type="hidden" name="option" value="com_ecommerce" />
+                    <input type="hidden" name="task" value="addcart_package" />
                 </form>
             </div>
             <!--package form-->
