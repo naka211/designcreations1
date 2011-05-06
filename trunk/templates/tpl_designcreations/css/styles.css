@@ -655,7 +655,7 @@ a.print-btn			{ background-position: -526px -92px; width: 103px; height: 23px; }
 a.print-btn:hover 	{ background-position: -630px -92px;}
 
 /*-------Sidebar--------------*/
-#sidebar, a.add-cart-btn, #sidebar a.buy-btn, span.eller { background:url(../img/sprites/sidebar.png) no-repeat 0 0;}
+#sidebar, .add-cart-btn, #sidebar .buy-btn, span.eller { background:url(../img/sprites/sidebar.png) no-repeat 0 0;}
 #sidebar {
 	width: 282px;
 	height: 684px;
@@ -683,13 +683,13 @@ select#designChoices 		{width: 220px; margin:2px 0 0 30px; padding-left: 2px; }
 #formBoxes form p.logo-link a { color:#008ed1; text-decoration: underline;}
 #formBoxes form p.logo-link a:hover { text-decoration: none;}
 
-a.add-cart-btn, #sidebar a.buy-btn, span.eller {  display:block; float: left; clear:both;}
-a.add-cart-btn		 	{ width: 226px; height: 25px; background-position: 0 -685px;}
-a.add-cart-btn:hover 	{ background-position: 0 -711px;}
+.add-cart-btn, #sidebar .buy-btn, span.eller {  display:block; float: left; clear:both;}
+.add-cart-btn		 	{ width: 226px; height: 25px; background-position: 0 -685px;}
+.add-cart-btn:hover 	{ background-position: 0 -711px;}
 span.eller				{ background-position: right -739px; width: 60px; height: 25px; margin: 8px 0 0 80px;  }
 
-#sidebar a.buy-btn	{ width: 227px; height: 61px; background-position: 0 -744px;}
-#sidebar a.buy-btn:hover { background-position: 0 -804px;}
+#sidebar .buy-btn	{ width: 227px; height: 61px; background-position: 0 -744px;}
+#sidebar .buy-btn:hover { background-position: 0 -804px;}
 
 #sidebar ul.links { width: 226px; margin: 0 auto; padding: 0; list-style:none;}
 #sidebar ul.links li { margin: 0; padding: 0 0 0 8px; background:url(../img/dot.gif) no-repeat left 8px ;}

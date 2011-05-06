@@ -13,10 +13,14 @@ class EcommerceController extends JController
 		parent::display();
 	}
 	
+	function addcart_package(){
+		print_r($_POST);exit();
+	}
+	
 	function addcart(){
 	global $ecom_config;
 	$db = &JFactory::getDBO();
-
+	
 	$session =& JFactory::getSession();
 	
 	$id = intval( JRequest::getVar('id') );
@@ -56,6 +60,39 @@ class EcommerceController extends JController
 			$session->set('subtotal', $subtotal);
 
 			$i=intval($session->get('tongsl'));
+			
+			if($request_file){
+				$typeArrRequest = array("application/pdf","image/jpeg");
+				if(!in_array($_FILES['request_file']['type'],$typeArrRequest)){
+					echo '<script>alert("Fil forlængelse ikke tilladt at uploade");window.history.go(-1);</script>';
+					exit();
+				}
+				if($_FILES['request_file']['size'] > 5242880){
+					echo '<script>alert("Filstørrelse er for stor");window.history.go(-1);</script>';
+					exit();
+				}
+				$rand = mt_rand();
+				$request_file_name = $rand.$_FILES['request_file']['name'];
+				if(!move_uploaded_file($_FILES['request_file']['tmp_name'],"tmp/".$request_file_name)){echo '<script>alert("fejl i upload-processen");window.history.go(-1);</script>';
+					exit();}
+			}
+			//print_r($_FILES['logo_file']);exit();
+			if($logo_file){
+				$typeArrLogo = array("application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.ms-powerpoint");
+				if(!in_array($_FILES['logo_file']['type'],$typeArrLogo)){
+					echo '<script>alert("Fil forlængelse ikke tilladt at uploade");window.history.go(-1);</script>';
+					exit();
+				}
+				if($_FILES['logo_file']['size'] > 5242880){
+					echo '<script>alert("Filstørrelse er for stor");window.history.go(-1);</script>';
+					exit();
+				}
+				$rand = mt_rand();
+				$logo_file_name = $rand.$_FILES['logo_file']['name'];
+				if(!move_uploaded_file($_FILES['logo_file']['tmp_name'],"tmp/".$request_file_name)){echo '<script>alert("fejl i upload-processen");window.history.go(-1);</script>';
+					exit();}
+			}
+			
 			$session->set('id'.$i, $id);
 			$session->set('name'.$i, $name);
 			$session->set('price'.$i, $price);
@@ -66,7 +103,7 @@ class EcommerceController extends JController
 			$session->set('card'.$i, $card);
 			$session->set('letter'.$i, $letter);
 			$session->set('brochure'.$i, $brochure);
-			$session->set('request_file'.$i, $request_file);
+			$session->set('request_file'.$i, $request_file_name);
 			$session->set('logo_file'.$i, $logo_file);
 			$session->set('quantity'.$i, 1);
 		}
@@ -91,7 +128,9 @@ function change_curency(){
 function viewcart(){
 	$session =& JFactory::getSession();
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "cart" . DS . "viewcart.php");
+	//print_r($ecom_config);exit();
+	//$session->destroy();
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "basket.php");
 }
 
 function updatecart(){
@@ -110,19 +149,34 @@ function updatecart(){
 
 function delcart(){
 	$session =& JFactory::getSession();
-	//echo $session->get('tongsl'); return;exit;
-
-	for ($i= intval(JRequest::getVar('i')); $i< intval($session->get('tongsl')); $i++){
-		$j=$i+1;
-		$session->set('mahang'.$i, $session->get('mahang'.$j));
-		$session->set('tenhang'.$i, $session->get('tenhang'.$j));
-		$session->set('soluong'.$i, $session->get('soluong'.$j));
-		$session->set('gia'.$i, $session->get('gia'.$j));
+	
+	for ($i= intval(JRequest::getVar('i')); $i< intval($session->get('subtotal')); $i++){
+		$j = $i+1;
+		$session->set('id'.$i, $session->get('id'.$j));
+		$session->set('name'.$i, $session->get('name'.$j));
+		$session->set('quantity'.$i, $session->get('quantity'.$j));
+		$session->set('price'.$i, $session->get('price'.$j));
+		
+		$session->set('logo_name'.$i, $session->get('logo_name'.$j));
+		$session->set('slogan'.$i, $session->get('slogan'.$j));
+		$session->set('profession'.$i, $session->get('profession'.$j));
+		$session->set('info'.$i, $session->get('info'.$j));
+		$session->set('card'.$i, $session->get('card'.$j));
+		$session->set('letter'.$i, $session->get('letter'.$j));
+		$session->set('brochure'.$i, $session->get('brochure'.$j));
+		if($session->get('logo_file'.$i)){
+			unlink("tmp/".$session->get('logo_file'.$i));
+		}
+		$session->set('logo_file'.$i, $session->get('logo_file'.$j));
+		if($session->get('request_file'.$i)){
+			unlink("tmp/".$session->get('request_file'.$i));
+		}
+		$session->set('request_file'.$i, $session->get('request_file'.$j));
 	}
-	$current_tongsl = intval($session->get('tongsl')) - 1;
-	$session->set('tongsl', $current_tongsl);
+	$current_tongsl = intval($session->get('subtotal')) - 1;
+	$session->set('subtotal', $current_tongsl);
 
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "cart" . DS . "viewcart.php");
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "basket.php");
 }
 
 function payment(){

@@ -60,7 +60,7 @@ $brochures = $db->loadObjectList();
             </div>
             <div class="example clr">
                 <h2>Eksempler på logos</h2>
-                <a class="more" href="portefolje.html#logoPortefolje">Se mere</a>
+                <a class="more" href="index.php?option=com_images&view=portefolje&Itemid=4&active=logoPortefolje">Se mere</a>
                 <!-- Begin Logos example list-->
                 <div class="box-decor-s1">
                     <div class="right-decor">
@@ -85,7 +85,7 @@ $brochures = $db->loadObjectList();
                     <li><span>Ubegraenset antal aendringer</span></li>
                     <li><span>Sammenlign med hvem som helst<em>laes vores hemmelighed</em></span><a class="more" onclick="MM_openBrWindow('<?php echo JURI::base();?>templates/tpl_designcreations/platinum.html', '' ,'scrollbars=yes,width=660,height=500')" href="javascript:;"><em>her</em></a></li>
                 </ul>
-                <a class="illus" href="produkter_pakke.html" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/platinum_pk.png" alt="Platinum Power Package" /></a>
+                <a class="illus" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/platinum_pk.png" alt="Platinum Power Package" /></a>
             </div>
             <!--/ End package-->
              
@@ -104,7 +104,7 @@ $brochures = $db->loadObjectList();
             </div>
             <div class="example clr">
                 <h2>Eksempler på visitkort</h2>
-                <a class="more" href="portefolje.html#visitkortPortefolje">Se mere</a>
+                <a class="more" href="index.php?option=com_images&view=portefolje&Itemid=4&active=visitkortPortefolje">Se mere</a>
                 <!-- Begin Logos example list-->
                 <div class="box-decor-s1">
                     <div class="right-decor">
@@ -127,9 +127,9 @@ $brochures = $db->loadObjectList();
                 <ul>
                     <li><span>3 skabeloner af visitkort i den næste dag for at gennemgå</span></li>
                     <li><span>Ubegraenset antal aendringer</span></li>
-                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="produkter_pakke.html"><em>Se hvad inde i pakken</em></a></li>
+                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2"><em>Se hvad inde i pakken</em></a></li>
                 </ul>
-                <a class="illus" href="produkter_pakke.html" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/silver_pk.png" alt="Silver Package" /></a>
+                <a class="illus" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/silver_pk.png" alt="Silver Package" /></a>
             </div>
             <!--/ End package-->
         </div>
@@ -147,7 +147,7 @@ $brochures = $db->loadObjectList();
             </div>
             <div class="example clr">
                 <h2>Eksempler på Brevpapir</h2>
-                <a class="more" href="portefolje.html#brevpapirPortefolje">Se mere</a>
+                <a class="more" href="index.php?option=com_images&view=portefolje&Itemid=4&active=brevpapirPortefolje">Se mere</a>
                 <!-- Begin Logos example list-->
                 <div class="box-decor-s1">
                     <div class="right-decor">
@@ -170,9 +170,9 @@ $brochures = $db->loadObjectList();
                 <ul>
                     <li><span>2 skabeloner af brochurer i de næste 2 dage for at gennemgå</span></li>
                     <li><span>Ubegraenset antal aendringer</span></li>
-                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="produkter_pakke.html"><em>Se hvad inde i pakken</em></a></li>
+                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2"><em>Se hvad inde i pakken</em></a></li>
                 </ul>
-                <a class="illus" href="produkter_pakke.html" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/gold_pk.png" alt="Gold Package" /></a>
+                <a class="illus" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/gold_pk.png" alt="Gold Package" /></a>
             </div>
             <!--/ End package-->
         </div>
@@ -190,7 +190,7 @@ $brochures = $db->loadObjectList();
             </div>
             <div class="example clr">
                 <h2>Eksempler på Brochure</h2>
-                <a class="more" href="portefolje.html#brochurePortefolje">Se mere</a>
+                <a class="more" href="index.php?option=com_images&view=portefolje&Itemid=4&active=brochurePortefolje">Se mere</a>
                 <!-- Begin Logos example list-->
                 <div class="box-decor-s1">
                     <div class="right-decor">
@@ -213,9 +213,9 @@ $brochures = $db->loadObjectList();
                 <ul>
                     <li><span>2 unikke brochureforslag</span><em class="red">de første er klar i morgen*</em></li>
                     <li><span>Ubegraenset antal aendringer</span></li>
-                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="produkter_pakke.html"><em>Se hvad inde i pakken</em></a></li>
+                    <li><span>Fuld understøttelse og design konsulent</span><a class="more" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2"><em>Se hvad inde i pakken</em></a></li>
                 </ul>
-                <a class="illus" href="produkter_pakke.html" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/diamond_pk.png" alt="Diamond Package" /></a>
+                <a class="illus" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2" title="Se hvad inde i pakken"><img src="<?php echo $template_dir;?>img/diamond_pk.png" alt="Diamond Package" /></a>
             </div>
             <!--/ End package-->
         </div>
