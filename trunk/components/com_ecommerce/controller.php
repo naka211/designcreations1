@@ -13,8 +13,13 @@ class EcommerceController extends JController
 		parent::display();
 	}
 	
-	function addcart_package(){
-		print_r($_POST);exit();
+	function pakkeform(){
+		$db = &JFactory::getDBO();
+		$query = "SELECT id,name,promotion_price,price FROM #__pr_product WHERE id = ".JRequest::getVar('id');
+		$db->setQuery($query);
+		$package = $db->loadObject();
+		
+		require_once(JPATH_COMPONENT . DS . "view" . DS . "pakkeform.php");
 	}
 	
 	function addcart(){
@@ -38,31 +43,22 @@ class EcommerceController extends JController
 	
 	$request_file = $_FILES['request_file']['name'];
 	$logo_file = $_FILES['logo_file']['name'];
-	
+	//print_r($request_file);exit();
 	if($id){
 		$kt=0;
 		
-		for($i=0; $i<=intval($session->get('subtotal')); $i ++ ){
+		for($i=0; $i<intval($session->get('subtotal')); $i ++ ){
 			
 			if($id == intval($session->get('id'.$i))){
 				$kt=1;
 				break;
 			}
 		}
+		//print_r($i);exit();
 		if($kt==0){
 			
-			$query = "select * from #__pr_product where id = ". $product_id;
-			$db->setQuery($query);
-			$row = $db->loadObject();
-			
-			$subtotal = intval($session->get('subtotal'));
-			$subtotal = $subtotal + 1 ;
-			$session->set('subtotal', $subtotal);
-
-			$i=intval($session->get('tongsl'));
-			
 			if($request_file){
-				$typeArrRequest = array("application/pdf","image/jpeg");
+				$typeArrRequest = array("application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.ms-powerpoint");
 				if(!in_array($_FILES['request_file']['type'],$typeArrRequest)){
 					echo '<script>alert("Fil forlængelse ikke tilladt at uploade");window.history.go(-1);</script>';
 					exit();
@@ -78,7 +74,7 @@ class EcommerceController extends JController
 			}
 			//print_r($_FILES['logo_file']);exit();
 			if($logo_file){
-				$typeArrLogo = array("application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.ms-powerpoint");
+				$typeArrLogo = array("application/pdf", "image/jpeg", "application/postscript", "application/octet-stream", "image/svg+xml");
 				if(!in_array($_FILES['logo_file']['type'],$typeArrLogo)){
 					echo '<script>alert("Fil forlængelse ikke tilladt at uploade");window.history.go(-1);</script>';
 					exit();
@@ -89,10 +85,20 @@ class EcommerceController extends JController
 				}
 				$rand = mt_rand();
 				$logo_file_name = $rand.$_FILES['logo_file']['name'];
-				if(!move_uploaded_file($_FILES['logo_file']['tmp_name'],"tmp/".$request_file_name)){echo '<script>alert("fejl i upload-processen");window.history.go(-1);</script>';
+				if(!move_uploaded_file($_FILES['logo_file']['tmp_name'],"tmp/".$logo_file_name)){echo '<script>alert("fejl i upload-processen");window.history.go(-1);</script>';
 					exit();}
 			}
 			
+			$query = "select * from #__pr_product where id = ". $product_id;
+			$db->setQuery($query);
+			$row = $db->loadObject();
+			
+			$subtotal = intval($session->get('subtotal'));
+			$subtotal = $subtotal + 1 ;
+			$session->set('subtotal', $subtotal);
+
+			$i=intval($session->get('subtotal'));
+						
 			$session->set('id'.$i, $id);
 			$session->set('name'.$i, $name);
 			$session->set('price'.$i, $price);
@@ -113,38 +119,15 @@ class EcommerceController extends JController
 		}	
 	}
 	
-	$this->setRedirect("index.php?option=com_ecommerce&task=viewcart");
+	$this->setRedirect("index.php?option=com_ecommerce&task=basket");
 }
 
-function change_curency(){
-	$session =& JFactory::getSession();
-	$curency = JRequest::getVar('curency',"VND");
-	$session->set('curency', $curency);
-	$url = JRequest::getVar("return_url");
-	$url = base64_decode($url); 
-	$this->setRedirect($url);
-}
-
-function viewcart(){
+function basket(){
 	$session =& JFactory::getSession();
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
-	//print_r($ecom_config);exit();
+	//print_r($session->get('subtotal'));exit();
 	//$session->destroy();
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "basket.php");
-}
-
-function updatecart(){
-	global $ecom_config;
-	$session =& JFactory::getSession();
-	for ($i=1; $i<= intval($session->get('tongsl')); $i++){
-		if(JRequest::getVar('C'.$i)==""){
-			$session->set('soluong'.$i , 1);
-		} else {
-			$session->set('soluong'.$i , JRequest::getVar('C'.$i));
-		}
-	}
-	if($ecom_config==NULL) $ecom_config = $this->getConfig();
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "cart" . DS . "viewcart.php");
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "kurv.php");
 }
 
 function delcart(){
@@ -176,7 +159,7 @@ function delcart(){
 	$current_tongsl = intval($session->get('subtotal')) - 1;
 	$session->set('subtotal', $current_tongsl);
 
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "basket.php");
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "kurv.php");
 }
 
 function payment(){
@@ -313,85 +296,113 @@ function verify_payment()
 		$this->setRedirect("index.php?option=com_ecommerce&view=orders", "Có lỗi trong quá trình thanh toán, xin quý khách vui lòng chọn hàng và thanh toán lại", "error");
 	}
 }
-function check(){
-	$session =& JFactory::getSession(); 
-	$user = & JFactory::getUser();
-	$type = (!$user->get('guest')) ? 'logged' : 'guest';
-	if($type=='guest'){
-		// die($this->return());
-		$uri = JFactory::getURI();
-		$url = $uri->toString(array('path', 'query', 'fragment'));
-		$return=base64_encode($url);
-		$this->setRedirect("index.php?option=com_user&view=login&return=$return","Vui l&ograve;ng &#273;&#259;ng nh&#7853;p &#273;&#7875; c&oacute; th&#7875; mua h&agrave;ng Online","notice");
-	}
-	
-	if($session->get('tongsl')<1)
-	{
-		$this->setRedirect("index.php?option=com_ecommerce&task=addcart","Giỏ hàng của bạn không có sản phẩm nào. Bạn chưa thể đặt mua hàng được","error");
-	}
-}	
-function order(){
+
+function delivery(){
 	global $ecom_config;
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
 	$session =& JFactory::getSession(); 
-	$this->check();
-	
-	
-	
+		
 	if(!JRequest::getVar('submit',0)){
-		$order_contact_name = $session->get('order_contact_name','');
-		$order_address = $session->get('order_address','');	
-		$order_phone = $session->get('order_phone','');	
-		$order_fax = $session->get('order_fax','');	
-		$order_email = $session->get('order_email','');
-		$order_info = $session->get('order_info','');
-		$order_method = $session->get('order_method',0);
-		require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "default.php");
+		$order_name 	= $session->get('order_name','');
+		$order_address 	= $session->get('order_address','');	
+		$order_phone	= $session->get('order_phone','');	
+		$order_zipcode 	= $session->get('order_zipcode','');
+		$order_city 	= $session->get('order_city','');	
+		$order_country 	= $session->get('order_country','');	
+		$order_email 	= $session->get('order_email','');
+		$order_comment 	= $session->get('order_comment','');
+		
+		$order_format_eps 	= $session->get('order_format_eps','');
+		$order_format_ai 	= $session->get('order_format_ai','');
+		$order_format_psd 	= $session->get('order_format_psd','');
+		$order_format_pdf 	= $session->get('order_format_pdf','');
+		$order_format_tiff 	= $session->get('order_format_tiff','');
+		$order_format_jpg 	= $session->get('order_format_jpg','');
+		$order_format_png 	= $session->get('order_format_png','');
+		$order_format_gif 	= $session->get('order_format_gif','');
+		
+		$order_via_email = $session->get('order_via_email',0);
+		$order_via_host = $session->get('order_via_host',0);
+		
+		require_once(JPATH_COMPONENT . DS . "view" . DS . "levering.php");
 	}
 	else{
-		$order_contact_name = JRequest::getVar('order_contact_name','');
-		$order_address = JRequest::getVar('order_address','');	
-		$order_phone = JRequest::getVar('order_phone','');	
-		$order_fax = JRequest::getVar('order_fax','');	
-		$order_email = JRequest::getVar('order_email','');
-		$order_info = JRequest::getVar('order_info','');
-		$order_method = JRequest::getVar('order_method',0);	
-		if(! $order_contact_name || !$order_address || !$order_phone || !$order_method)	{
-			$this->setRedirect("index.php?option=com_ecommerce&task=order","Vui lòng nhập đầy đủ các thông tin bắt buộc","error");
-		}
-		else{
-			$session->set('order_contact_name', $order_contact_name);
-			$session->set('order_address', $order_address);	
-			$session->set('order_phone', $order_phone);	
-			$session->set('order_fax', $order_fax);	
-			$session->set('order_email', $order_email);
-			$session->set('order_info', $order_info);
-			$session->set('order_method', $order_method);	
-			//require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "confirm.php");
-			$this->setRedirect("index.php?option=com_ecommerce&task=confirm");
+		$order_name 	= JRequest::getVar('order_name','');
+		$order_address 	= JRequest::getVar('order_address','');	
+		$order_phone 	= JRequest::getVar('order_phone','');	
+		$order_zipcode 	= JRequest::getVar('order_zipcode','');	
+		$order_city 	= JRequest::getVar('order_city','');	
+		$order_country 	= JRequest::getVar('order_country','');	
+		$order_email 	= JRequest::getVar('order_email','');
+		$order_comment 	= JRequest::getVar('order_comment','');
+		
+		$order_format_eps 	= JRequest::getVar('order_format_eps',0);
+		$order_format_ai 	= JRequest::getVar('order_format_ai',0);
+		$order_format_psd 	= JRequest::getVar('order_format_psd',0);
+		$order_format_pdf 	= JRequest::getVar('order_format_pdf',0);
+		$order_format_tiff 	= JRequest::getVar('order_format_tiff',0);
+		$order_format_jpg 	= JRequest::getVar('order_format_jpg',0);
+		$order_format_png 	= JRequest::getVar('order_format_png',0);
+		$order_format_gif 	= JRequest::getVar('order_format_gif',0);
+		
+		$order_via_email 	= JRequest::getVar('order_via_email',0);
+		$order_via_host 	= JRequest::getVar('order_via_host',0);
+		
+		$session->set('order_name', $order_name);
+		$session->set('order_address', $order_address);	
+		$session->set('order_phone', $order_phone);	
+		$session->set('order_zipcode', $order_zipcode);
+		$session->set('order_city', $order_city);	
+		$session->set('order_country', $order_country);	
+		$session->set('order_email', $order_email);
+		$session->set('order_comment', $order_comment);
+		
+		$session->set('order_format_eps', $order_format_eps);
+		$session->set('order_format_ai', $order_format_ai);
+		$session->set('order_format_psd', $order_format_psd);
+		$session->set('order_format_pdf', $order_format_pdf);
+		$session->set('order_format_tiff', $order_format_tiff);
+		$session->set('order_format_jpg', $order_format_jpg);
+		$session->set('order_format_png', $order_format_png);
+		$session->set('order_format_gif', $order_format_gif);
+		
+		$session->set('order_via_email', $order_via_email);
+		$session->set('order_via_host', $order_via_host);
+		//require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "confirm.php");
+		$this->setRedirect("index.php?option=com_ecommerce&task=bekraeft");
 			
-		}			
+					
 	}
 }
 
-function confirm(){
+function bekraeft(){
 	global $ecom_config;
-	$this->check();
-	
+		
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
 	$session =& JFactory::getSession();
 	
-	$order_contact_name = $session->get('order_contact_name','');
-	$order_address = $session->get('order_address','');	
-	$order_phone = $session->get('order_phone','');	
-	$order_fax = $session->get('order_fax','');	
-	$order_email = $session->get('order_email','');
-	$order_info = $session->get('order_info','');
-	$order_method = $session->get('order_method',0);	
-	if(! $order_contact_name || !$order_address || !$order_phone || !$order_method)	{
-		$this->setRedirect("index.php?option=com_ecommerce&task=order","Vui lòng nhập đầy đủ các thông tin bắt buộc","error");
-	}
-	require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "confirm.php");
+	$order_name		= $session->get('order_name','');
+	$order_address 	= $session->get('order_address','');	
+	$order_phone 	= $session->get('order_phone','');	
+	$order_zipcode 	= $session->get('order_zipcode','');
+	$order_city 	= $session->get('order_city','');
+	$order_country 	= $session->get('order_country','');
+	$order_email 	= $session->get('order_email','');
+	$order_comment 	= $session->get('order_comment','');
+	
+	$order_format_eps 	= $session->get('order_format_eps',0);
+	$order_format_ai 	= $session->get('order_format_ai',0);
+	$order_format_psd 	= $session->get('order_format_psd',0);
+	$order_format_pdf 	= $session->get('order_format_pdf',0);
+	$order_format_tiff 	= $session->get('order_format_tiff',0);
+	$order_format_jpg 	= $session->get('order_format_jpg',0);
+	$order_format_png 	= $session->get('order_format_png',0);
+	$order_format_gif 	= $session->get('order_format_gif',0);
+	
+	$order_via_email 	= $session->get('order_via_email',0);
+	$order_via_host 	= $session->get('order_via_host',0);	
+	
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "bekraeft.php");
 }
 
 function getConfig(){

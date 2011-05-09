@@ -64,6 +64,9 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                         </div>
                         
                         <!-- Shopping cart-->
+                        <?php if ($this->countModules('cart')) { ?>
+                        <jdoc:include type="modules" name="cart" />
+                        <?php } ?>
                         <div id="cart" class="flr">
                             <a class="shopping-cart" href="indkobskurv.html">
                                 <span class="link">Indkøbskurven</span>

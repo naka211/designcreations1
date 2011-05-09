@@ -120,7 +120,10 @@ $template_dir = "templates/tpl_designcreations/";
 		function submitPackageForm(){
 			if(!$("input[name='package']:checked").val()){
 				alert('Vælg venligst en pakke');
+				return false;
 			}
+			
+			location.href = "index.php?option=com_ecommerce&task=pakkeform&id="+$('[name=package]').fieldValue();
 		}
     </script>
     <h3><img src="<?php echo $template_dir;?>img/bestil_nu_title.png" alt="Bestil Nu !" /></h3>
