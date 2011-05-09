@@ -1,4 +1,14 @@
-
+<script language="javascript">
+	function nextStep(){
+		
+		if(!$('input[name=accept]').is(':checked')){
+			alert('Tjek venligst bytteforholdet');
+			return false;
+		}
+		
+		location.href = 'index.php?option=com_ecommerce&task=delivery';
+	}
+</script>
 <div id="breadcumbs" class="w700 fll clr">
     <a class="home-link" href="index.php" title="Forside">&nbsp;</a>
     <span><img src="templates/tpl_designcreations/img/arrow_s1.png" alt="" /></span>
@@ -10,7 +20,7 @@
 
     <div class="dc-tabs-content fll clr">
         <ul class="ui-tabs-nav">
-            <li class="tab-item ui-tabs-selected" id="basketTab"><a href="indkoebskurv.html"><span class="num">1</span><span class="step">Indkøbskurv</span></a></li>
+            <li class="tab-item ui-tabs-selected" id="basketTab"><a href="#"><span class="num">1</span><span class="step">Indkøbskurv</span></a></li>
             <li class="tab-item" id="deliveryTab"><div class="dis-tab"><span class="num">2</span><span class="step">Levering</span></div></li>
             <li class="tab-item" id="confirmTab"><div class="dis-tab"><span class="num">3</span><span class="step">Bekræft og betal</span></div></li>
             <li class="tab-item" id="receiptTab"><div class="dis-tab"><span class="num">4</span><span class="step">Kvittering</span></div></li>
@@ -31,7 +41,7 @@
                                 <th class="right">Pris i alt</th>
                             </tr>
                             <?php if($session->get('subtotal')>0){
-								for ($i=0; $i<$session->get('subtotal'); $i++) {?> 
+								for ($i=1; $i<=$session->get('subtotal'); $i++) {?> 
                             <tr class="even">
                                 <td width="200" class="left"><?php echo $session->get('name'.$i); ?></td>
                                 <td width="130" class="center">DKK <?php echo $session->get('price'.$i); ?>,00</td>
@@ -44,7 +54,7 @@
                             <?php 
 								$sub += $session->get('price'.$i) * $session->get('quantity'.$i);
 								}
-								$tax = $sub * $ecom_config['tax']['value']; print_r($tax);
+								$tax = $sub * $ecom_config['tax']['value'];
 							}
 							?>
                             <tr class="bottom">
@@ -59,16 +69,16 @@
                             </tr>
                             <tr class="bottom">
                                 <td colspan="6" class="last">
-                                    <label><input class="check-box" type="checkbox" name="Jeg accepterer" />Jeg accepterer</label>
-                                    <a href="handelsbetingelserne.html">handelsbetingelserne</a>
+                                    <label><input class="check-box" type="checkbox" name="accept" id="accept" />Jeg accepterer</label>
+                                    <a href="index.php?option=com_ecommerce&view=betingelser&Itemid=1">handelsbetingelserne</a>
                                 </td>
                             </tr>
                         </tbody>
                      </table>
                 </div>
                 <div class="actions-ctn">
-                    <a class="back-btn" href="pakke_form.html">Tilbage</a>
-                    <a class="checkout-btn flr" href="levering.html">Næste</a>
+                    <a class="back-btn" href="javascript:void(0);" onclick="history.back();">Tilbage</a>
+                    <a class="checkout-btn flr" href="javascript:void(0);" onclick="nextStep();">Næste</a>
                 </div>
             </div>
             <div class="content-box-decor box-decor-btm w700 fll clr"><span></span></div>
