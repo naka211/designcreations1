@@ -1,6 +1,62 @@
 <?php 
 $template_dir = "templates/tpl_designcreations/";
+$session =& JFactory::getSession();
+if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET['task']);
 ?>
+<div id="sidebar">
+<h3><img src="templates/tpl_designcreations/img/bestil_status_title.png" alt="Bestil status" /></h3>
+<div class="sidebar-content w226">
+   
+	<div id="orderStatus">
+		<h4>Ordren betales af :</h4>
+		<p>
+			<dl>
+				<dt>Navn :</dt>
+				<dd><?php echo $session->get('order_name','');?></dd>
+				<dt>Adresse :</dt>
+				<dd><?php echo $session->get('order_address','');?></dd>
+				<dt>Postnr. :</dt>
+				<dd><?php echo $session->get('order_zipcode','');?></dd>
+				<dt>Land :</dt>
+				<dd>Danmark</dd>
+				<dt>Tlf :</dt>
+				<dd><?php echo $session->get('order_phone','');?></dd>
+				<dt>Email :</dt>
+				<dd><?php echo $session->get('order_email','');?></dd>
+			</dl>
+		</p>
+		
+		<h4>Levering format :</h4>
+		<p><?php echo $session->get('strFormat','');?></p>
+		
+		<h4>Ordren leveres af :</h4>
+		<ul>
+        	<?php if($session->get('order_via_host','')){?>
+			<li>Filoverførsel fra værten (Du vil modtage linket via e-mail)</li>
+            <?php }
+			if($session->get('order_via_email','')){
+			?>
+			<li>Via e-mail (Attachment)</li>
+            <?php }?>
+		</ul>
+		
+		<h4>Bemærkninger :</h4>
+		<p class="message"><?php echo $session->get('order_comment','');?></p>
+	
+		
+	</div>
+	
+	<!--Link to payment process guide-->
+	<ul class="links">
+		<li><a href="index.php?option=com_ecommerce&view=betaling&Itemid=1">Lær mere om bestilling &amp; betaling proces</a></li>
+		<li><a href="index.php?option=com_ecommerce&view=vilkar&Itemid=1">Vilkår og betingelser</a></li>
+	</ul>
+
+</div>
+   
+</div>
+<?php } else {?>
+
 <div id="sidebar">
 	<script type="text/javascript">
         $(function(){
@@ -321,7 +377,7 @@ $template_dir = "templates/tpl_designcreations/";
                         <input type="button" class="buy-btn hidden_txt" style="border:none;cursor:pointer;margin:0;" onclick="submitPackageForm();" />
                     </fieldset>
                     <input type="hidden" name="option" value="com_ecommerce" />
-                    <input type="hidden" name="task" value="addcart_package" />
+                    <input type="hidden" name="task" value="pakkeform" />
                 </form>
             </div>
             <!--package form-->
@@ -333,9 +389,6 @@ $template_dir = "templates/tpl_designcreations/";
             <li><a href="index.php?option=com_ecommerce&view=betaling&Itemid=1">Lær mere om bestilling &amp; betaling proces</a></li>
             <li><a href="index.php?option=com_ecommerce&view=vilkar&Itemid=1">Vilkår og betingelser</a></li>
         </ul>
-
-
-    </div>
-    
-       
+    </div>   
 </div>
+<?php }?>

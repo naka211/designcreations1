@@ -35,9 +35,7 @@ function show_orderdetail(order,order_id){
 			<th width="15%">
 				Subtotal
 			</th>
-			<th width="5%">	
-				Status
-			</th>
+			
 		</tr>			
 	</thead>
 	
@@ -54,12 +52,12 @@ function show_orderdetail(order,order_id){
 				<?php echo $checked; ?>
 			</td>
 			<td align="center">
-				<a class="modal" rel="{handler: 'iframe', size: {x: 570, y: 350}}" href="../index.php?option=com_ecommerce&view=orders&tmpl=component&order_id=<?php echo $row->order_id;?>">
+				<a href="index.php?option=com_ecommerce&controller=orders&task=edit&cid[]=<?php echo $row->order_id?>">
 				<?php echo sprintf("%05d", $row->order_id); ?>
 				</a>
 			</td>
 			<td align="center">
-				<?php echo $row->order_contact_name; ?>
+				<?php echo $row->order_name; ?>
 			</td>
 			<td align="center">
 				<?php echo $row->order_address; ?>
@@ -73,22 +71,20 @@ function show_orderdetail(order,order_id){
 			<td align="center">
 				<?php echo $row->order_total; ?>  DKK
 			</td>
-			<td align="center">
-				<img src="../images/<? echo $status[$row->order_status]; ?>.png" width="20" height="20" /> 
-			</td>
+			
 		</tr>
 		<?php
 		$k = 1 - $k;
 	}
 	?>
-			<tr>
+			<!--<tr>
 				<td colspan="10">
 					<?php echo $this->page->getListFooter(); ?><br />
 					<img src="../images/chothanhtoan.png" width="20" height="20" align="absmiddle" />: Pending &nbsp;
 					<img src="../images/dathanhtoan.png" width="20" height="20" align="absmiddle" />: Confirmed &nbsp;
 					<img src="../images/khongchapnhan.png" width="20" height="20" align="absmiddle" />: Cancelled
 				</td>
-			</tr>
+			</tr>-->
 	</table>
 </div>
 

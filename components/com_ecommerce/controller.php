@@ -116,13 +116,15 @@ class EcommerceController extends JController
 		else {
 			$sl = $session->get('quantity'.$i) + 1;
 			$session->set('quantity'.$i, $sl);
-		}	
+		}
+		
+		$session->set('subprice',$session->get('subprice') + $price);
 	}
 	
-	$this->setRedirect("index.php?option=com_ecommerce&task=basket");
+	$this->setRedirect("index.php?option=com_ecommerce&task=kurv");
 }
 
-function basket(){
+function kurv(){
 	$session =& JFactory::getSession();
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
 	//print_r($session->get('subtotal'));exit();
@@ -162,147 +164,13 @@ function delcart(){
 	require_once(JPATH_COMPONENT . DS . "view" . DS . "kurv.php");
 }
 
-function payment(){
-	$user = & JFactory::getUser();
-	$session =& JFactory::getSession(); 
-	$type = (!$user->get('guest')) ? 'logged' : '';
-	if($type=='logged' && $session->get('tongsl')>0)
-	{
-		$db		= &JFactory::getDBO();
-		$session =& JFactory::getSession();
-		
-		$user = & JFactory::getUser();
-		$user_id = $user->get('id');
-	
-		$order_contact_name = JRequest::getVar('order_contact_name','');
-		$order_address = JRequest::getVar('order_address','');	
-		$order_phone = JRequest::getVar('order_phone','');	
-		$order_fax = JRequest::getVar('order_fax','');	
-		$order_email = JRequest::getVar('order_email','');
-		$order_info = JRequest::getVar('order_info','');
-		$order_method = JRequest::getVar('order_method',3);
-		
-		$query = "insert into #__pr_orders(order_date, order_user_id,order_contact_name,order_address,order_phone,order_fax,order_email,order_info,order_method) value(now() ,$user_id,'$order_contact_name','$order_address','$order_phone','$order_fax','$order_email','$order_info','$order_method')";
-		$db->setQuery($query);
-		$db->query();
-		$order_id = $db->insertid();
-		
-		$order_total=0;
-		for($i=1 ; $i<= $session->get('tongsl'); $i ++)
-		{
-			$product_id = $session->get('mahang'.$i) ;
-			$product_name = $session->get('tenhang'.$i) ;
-			$quantity =  $session->get('soluong'.$i) ;
-			$price = $session->get('gia'.$i) ;
-			$total = $price*$quantity ;
-			$order_total +=$total;
-			$query_customer = "insert into #__pr_cart(order_id, product_id, product_name, quantity ,  price , total ) value($order_id,$product_id , '$product_name',$quantity ,$price,$total)";
-			
-			$db->setQuery($query_customer);
-			$db->query();
-			
-			$query="update #__pr_product set shopped = shopped + 1 where id = " . $product_id;
-			$db->setQuery($query);
-			$db->query();
-		}
-		$query = "UPDATE #__pr_orders set order_total = $order_total where order_id = $order_id ";
-		$db->setQuery($query);
-		$db->query();
-		
-		
-				
-		//Send Email
-		$mail = new JConfig();
-		$to = $mail->mailfrom; // email admin
-		$subject = "Đơn đặt hàng số ".$order_id;;
-		$body = "Thông tin người mua hàng";
-		$body .= "<br /> Họ tên người nhận: ".$order_contact_name;
-		$body .= "<br /> Địa chỉ : ". $order_address;
-		$body .= "<br /> Email : ". $order_email;
-		$body .= "<br /> Thông tin xuất hóa đơn : ". $order_info;
-		$body .= "<br /> Điện thoại : ". $order_phone;
-		$body .= "<br /> Vui lòng vào nhấp vào <a href='http://www.hoanlongcomputer.com/administrator/index.php?option=com_ecommerce&controller=orders'>http://www.hoanlongcomputer.com/administrator/index.php?option=com_ecommerce&controller=orders</a> để xem chi tiết";
-		
-		$config =& JFactory::getConfig();
-		
-		$message =& JFactory::getMailer();
-		$message->IsHTML(true);
-		$message->addRecipient($to); //nguoi nhan mail
-		$message->setSubject($subject); // tieu de
-		$message->setBody($body); // noi dung mail
-		$sender = array( $mail->mailfrom, $config->sitename ); // email he thong
-		$message->setSender($sender);
-		$sent = $message->send();
-		
-		// Ket noi ngan luong hoac paypal
-		if ( ($order_method == 1) && ( $session->get("curency")=="USD") ){
-			if($ecom_config==NULL) $ecom_config = $this->getConfig();
-			require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "paypal.php");
-			//$session->set('tongsl',0);
-				
-		}
-		elseif ($order_method == 1){
-			// khoi tao session de xac minh thanh toan thanh cong;
-			
-			$order_code = $order_id;
-			$price = $order_total;
-						
-			// lay thong so truyen cho Ngan luong
-			$return_url = JRoute::_('index.php?option=com_ecommerce&task=verify_payment');			
-			$return_url = "http://".$_SERVER['HTTP_HOST'].$return_url;
-			$receiver = "kinhdoanh2000laptop@gmail.com"; // tai khoan chu cua hang 
-			$transaction_info = 'Don hang cua user:'.$order_contact_name; // thong tin don hang
-			// thoi gian la ma don hang
-				
-			// Khoi tao doi tuong de lay URL truyen di
-			$NL_checkout = new NL_Checkout;
-			$link_nganluong  = $NL_checkout->buildCheckoutUrl($return_url, $receiver, $transaction_info, $order_code, $price);
-			//die($return_url );
-			//die($link_nganluong."Da luu thong tin hoa don, chi con chuyen thanh toan sang ngan luong");
-			//$session->set('tongsl',0);
-			header("location:$link_nganluong");
-		
-		}
-		else if($order_method == 2 || $order_method == 3)
-		{
-			$this->setRedirect("index.php?option=com_content&view=article&id=13");
-		}
-		
-	}
-	else
-	{
-		 $this->setRedirect("index.php?option=com_user&view=login","Vui lòng đăng nhập để có thể mua hàng Online","notice");
-	}
-}
-
-function verify_payment()
-{
-	$verify = new NL_Checkout;
-	
-	$transaction_info = JRequest::getVar('transaction_info');
-	$order_code = JRequest::getVar('order_code');
-	$price = JRequest::getVar('price');
-	$payment_id = JRequest::getVar('payment_id');
-	$payment_type = JRequest::getVar('payment_type');
-	$error_text = JRequest::getVar('error_text');
-	
-	$result = $verify->verifyPaymentUrl($transaction_info, $order_code, $price, $payment_id, $payment_type, $error_text, $secure_code);
-	if($result)
-	{
-		$this->setRedirect("index.php?option=com_content&view=article&id=12");
-	}
-	else
-	{
-		$this->setRedirect("index.php?option=com_ecommerce&view=orders", "Có lỗi trong quá trình thanh toán, xin quý khách vui lòng chọn hàng và thanh toán lại", "error");
-	}
-}
-
-function delivery(){
+function levering(){
 	global $ecom_config;
 	if($ecom_config==NULL) $ecom_config = $this->getConfig();
 	$session =& JFactory::getSession(); 
-		
-	if(!JRequest::getVar('submit',0)){
+	$db = &JFactory::getDBO();
+	
+	if(!JRequest::getVar('submit1',0)){
 		$order_name 	= $session->get('order_name','');
 		$order_address 	= $session->get('order_address','');	
 		$order_phone	= $session->get('order_phone','');	
@@ -369,9 +237,41 @@ function delivery(){
 		$session->set('order_via_email', $order_via_email);
 		$session->set('order_via_host', $order_via_host);
 		//require_once(JPATH_COMPONENT . DS . "view" . DS . "order" . DS . "confirm.php");
-		$this->setRedirect("index.php?option=com_ecommerce&task=bekraeft");
-			
-					
+		
+		$strFormat = $session->get('strFormat','');
+		$subprice = $session->get('subprice','');
+		$tax = $subprice * $ecom_config['tax']['value'];
+		$session->set('subpay', $subprice + $tax);
+		$session->set('tax', $tax);
+		
+		$arrVia = array();
+		if($order_via_email) $arrVia[] = $order_via_email;
+		if($order_via_host) $arrVia[] = $order_via_host;
+		
+		$strVia = implode(', ',$arrVia);
+		$session->set('strVia', $strVia);
+		
+		$arrFormat = array();
+		if($order_format_eps) $arrFormat[] = $order_format_eps;
+		if($order_format_ai) $arrFormat[] = $order_format_ai;
+		if($order_format_psd) $arrFormat[] = $order_format_psd;
+		if($order_format_pdf) $arrFormat[] = $order_format_pdf;
+		if($order_format_tiff) $arrFormat[] = $order_format_tiff;
+		if($order_format_jpg) $arrFormat[] = $order_format_jpg;
+		if($order_format_png) $arrFormat[] = $order_format_png;
+		if($order_format_gif) $arrFormat[] = $order_format_gif;
+		
+		$strFormat = implode(', ', $arrFormat);
+		$session->set('strFormat', $strFormat);
+		
+		$query = "INSERT INTO #__pr_orders_tmp(order_date, order_name, order_address, order_phone, order_zipcode, order_email, order_comment, order_total, order_tax, order_status, order_city, order_country, order_format, order_via) 
+		VALUE(now(), '$order_name', '$order_address', '$order_phone', '$order_zipcode', '$order_email', '$order_comment', $subprice, $tax, 1, '$order_city', '$order_country', '$strFormat', '$strVia')";
+		$db->setQuery($query);
+		$db->query();
+		$order_id = $db->insertid();
+		$session->set('order_id', $order_id);
+		
+		$this->setRedirect("index.php?option=com_ecommerce&task=bekraeft");				
 	}
 }
 
@@ -390,19 +290,178 @@ function bekraeft(){
 	$order_email 	= $session->get('order_email','');
 	$order_comment 	= $session->get('order_comment','');
 	
-	$order_format_eps 	= $session->get('order_format_eps',0);
-	$order_format_ai 	= $session->get('order_format_ai',0);
-	$order_format_psd 	= $session->get('order_format_psd',0);
-	$order_format_pdf 	= $session->get('order_format_pdf',0);
-	$order_format_tiff 	= $session->get('order_format_tiff',0);
-	$order_format_jpg 	= $session->get('order_format_jpg',0);
-	$order_format_png 	= $session->get('order_format_png',0);
-	$order_format_gif 	= $session->get('order_format_gif',0);
+	$order_format_eps 	= $session->get('order_format_eps');
+	$order_format_ai 	= $session->get('order_format_ai');
+	$order_format_psd 	= $session->get('order_format_psd');
+	$order_format_pdf 	= $session->get('order_format_pdf');
+	$order_format_tiff 	= $session->get('order_format_tiff');
+	$order_format_jpg 	= $session->get('order_format_jpg');
+	$order_format_png 	= $session->get('order_format_png');
+	$order_format_gif 	= $session->get('order_format_gif');
 	
-	$order_via_email 	= $session->get('order_via_email',0);
-	$order_via_host 	= $session->get('order_via_host',0);	
+	$order_via_email 	= $session->get('order_via_email');
+	$order_via_host 	= $session->get('order_via_host');	
+		
+	$strFormat 	= $session->get('strFormat');
+	$strVia 	= $session->get('strVia');
 	
+	$subpay 	= $session->get('subpay');
+	$subprice 	= $session->get('subprice');
+	$tax 		= $session->get('tax');
+	$order_id 	= $session->get('order_id');
+		
 	require_once(JPATH_COMPONENT . DS . "view" . DS . "bekraeft.php");
+}
+
+function kvittering(){
+	global $ecom_config;
+	if($ecom_config==NULL) $ecom_config = $this->getConfig();
+	$session =& JFactory::getSession();
+	
+	if($session->get('subtotal')>0)
+	{
+		$db		= &JFactory::getDBO();
+		$session =& JFactory::getSession();
+		
+		$order_id 	= $session->get('order_id');
+		
+		$query = "INSERT INTO #__pr_orders SELECT * FROM #__pr_orders_tmp WHERE order_id = $order_id";
+		$db->setQuery($query);
+		if($db->query()){		
+			$query = "DELETE FROM #__pr_orders_tmp WHERE order_id = $order_id";
+			$db->setQuery($query);
+			$db->query();
+		}
+		
+		for($i=1 ; $i<= $session->get('subtotal'); $i ++)
+		{
+			$id = $session->get('id'.$i) ;
+			$name = $session->get('name'.$i) ;
+			$quantity =  $session->get('quantity'.$i) ;
+			$price = $session->get('price'.$i) ;
+			$total = $price*$quantity ;
+			
+			$logo_name = $session->get('logo_name'.$i) ;
+			$slogan = $session->get('slogan'.$i) ;
+			$profession = $session->get('profession'.$i) ;
+			$info = $session->get('info'.$i) ;
+			$card = $session->get('card'.$i) ;
+			$letter = $session->get('letter'.$i) ;
+			$brochure = $session->get('brochure'.$i) ;
+			$request_file = $session->get('request_file'.$i) ;
+			$logo_file = $session->get('logo_file'.$i) ;
+			
+			if($request_file){
+				$source = 'tmp/'.$request_file;
+				$des = 'images/fileupload/'.$request_file;
+				copy($source, $des);
+				unlink($source);
+			}
+			
+			if($logo_file){
+				$source = 'tmp/'.$logo_file;
+				$des = 'images/fileupload/'.$logo_file;
+				copy($source, $des);
+				unlink($source);
+			}
+			
+			$query_customer = "INSERT INTO #__pr_cart(order_id, product_id, product_name, quantity ,  price , total, logo_name, slogan, profession, info, card, letter, brochure, request_file, logo_file ) 
+			VALUE($order_id, $id , '$name', $quantity , $price, $total, '$logo_name', '$slogan', '$profession', '$info', '$card', '$letter', '$brochure', '$request_file', '$logo_file')";
+			$db->setQuery($query_customer);
+			$db->query();
+		}
+				
+		//Send Email
+		$order_name		= $session->get('order_name','');
+		$order_address 	= $session->get('order_address','');	
+		$order_phone 	= $session->get('order_phone','');	
+		$order_zipcode 	= $session->get('order_zipcode','');
+		$order_city 	= $session->get('order_city','');
+		$order_country 	= $session->get('order_country','');
+		$order_email 	= $session->get('order_email','');
+		$order_comment 	= $session->get('order_comment','');
+					
+		$strFormat 	= $session->get('strFormat');
+		$strVia 	= $session->get('strVia');
+		
+		$subpay 	= $session->get('subpay');
+		$subprice 	= $session->get('subprice');
+		$tax 		= $session->get('tax');
+		$order_id 	= $session->get('order_id');
+	
+		$mail = new JConfig();
+		$to = $mail->mailfrom; // email admin
+		$subject = "Bekendtgørelse nr. ".$order_id;;
+		$body = "Oplysninger om bestilling";
+		$body .= "<br /> Navn: ".$order_name;
+		$body .= "<br /> Adresse : ". $order_address;
+		$body .= "<br /> By : ". $order_city;
+		$body .= "<br /> Land : ". $order_country;
+		$body .= "<br /> E-mail : ". $order_email;
+		$body .= "<br /> Telefon : ". $order_phone;
+		$body .= "<br /> Postnummer : ". $order_zipcode;
+		$body .= "<br /> Bemærkninger : ". $order_comment;
+		$body .= '
+		<table cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr class="first">
+				<th class="left">Design service/Pakke </th>
+				
+				<th width="128" class="right">Stk. pris</th>
+				<th width="113">Antal</th>
+				<th width="117" class="right">Pris i alt</th>
+			</tr>';
+		if($session->get("subtotal")>0){
+			for ($i=1; $i<=$session->get('subtotal'); $i++) {'
+		<tr class="even">
+			<td width="156" class="left">'.$session->get("name".$i).'</td>
+			
+			<td class="right">DKK '.$session->get("price".$i).',00</td>
+			<td>'.$session->get('quantity'.$i).'</td>
+			<td class="right">DKK '.$session->get('price'.$i) * $session->get('quantity'.$i).',00</td>
+		</tr>
+	   ';
+			}	
+		}
+		$body .='
+			<tr class="bottom">
+				<td colspan="2">&nbsp;</td>
+				<td class="right"><strong>Subtotal :</strong></td>
+				<td class="right"><span class="right red">DKK <strong>'.number_format($subprice,2,',','').'</strong></span></td>
+			</tr>
+			<tr class="bottom">
+				<td colspan="2">&nbsp;</td>
+				<td class="right">Heraf moms :</td>
+				<td class="right"><span class="right red">DKK '.number_format($tax,2,',','').'</span></span></td>
+			</tr>
+			<tr class="bottom">
+				<td colspan="2">&nbsp;</td>
+				<td class="right">At betale :</td>
+				<td class="right"><span class="right red">DKK '.number_format($subpay,2,',','').'</span></span></td>
+			</tr>
+		</tbody>
+	 </table>';
+	 	$db->setQuery("SELECT email FROM #__users WHERE id = 62");
+		$admin_email = $db->loadResult();
+		
+		$config =& JFactory::getConfig();
+		$mail = new JConfig();
+		$message =& JFactory::getMailer();
+
+		$message->IsHTML(true);
+		$message->addRecipient($order_email); //nguoi nhan mail
+		$message->addCC($admin_email);
+		$message->setSubject($subject); // tieu de
+		$message->setBody($body); // noi dung mail
+		$sender = array( $mail->mailfrom, $config->sitename ); // email he thong
+		$message->setSender($sender);
+		$sent = $message->send();				
+		
+		echo "OK";
+		
+	}
+	
+	require_once(JPATH_COMPONENT . DS . "view" . DS . "kvittering.php");
 }
 
 function getConfig(){

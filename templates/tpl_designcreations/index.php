@@ -122,7 +122,7 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
 							// change the path of the icons folder to match your site
 							echo '<a href="callto:'.$username.'" class="live-chat"><img src="templates/tpl_designcreations/img/'.$status.'.png" alt="call '.$username.'" /></a>';
 						}
-						//getSkypeStatusIcon('webfreelancere.com');
+						getSkypeStatusIcon('webfreelancere.com');
 						?>
                         
                         <!--/ End Live chat-->
@@ -185,6 +185,6 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                 </div>
             </div>
             <!--/ page content -->
-    	</div> 
+    	</div>
 </body>
 </html>

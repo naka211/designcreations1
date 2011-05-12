@@ -6,7 +6,7 @@
 			return false;
 		}
 		
-		location.href = 'index.php?option=com_ecommerce&task=delivery';
+		location.href = 'index.php?option=com_ecommerce&task=levering';
 	}
 </script>
 <div id="breadcumbs" class="w700 fll clr">

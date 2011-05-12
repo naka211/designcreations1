@@ -7,8 +7,8 @@ for($i=1; $i<=$session->get('subtotal'); $i++){
 }
 ?>
  <div id="cart" class="flr">
-    <a class="shopping-cart" href="index.php?option=com_ecommerce&task=basket">
+    <a class="shopping-cart" href="index.php?option=com_ecommerce&task=kurv">
         <span class="link">Indkøbskurven</span>
-        <span class="cart-info">Du har: <?php echo $session->get('subtotal');?> &nbsp;|&nbsp; Total: DKK&nbsp; <?php echo $price;?>,- </span>
+        <span class="cart-info">Du har: <?php if($session->get('subtotal'))echo $session->get('subtotal');else echo "0";?> &nbsp;|&nbsp; Total: DKK&nbsp; <?php echo $price;?>,- </span>
     </a>
 </div>
