@@ -9,9 +9,9 @@ class EcommerceViewOrders extends JView
 	{
 		JToolBarHelper::title(   JText::_( 'Orders' ), 'generic.png' );
 		
-		JToolBarHelper::custom('chothanhtoan', 'chothanhtoan.png', 'chothanhtoan.png', 'Pending', false, false);
-		JToolBarHelper::custom('dathanhtoan', 'dathanhtoan.png', 'dathanhtoan.png', 'Confirmed', false, false);
-		JToolBarHelper::custom('khongchapnhan', 'khongchapnhan.png', 'khongchapnhan.png', 'Cancelled', false, false);
+		//JToolBarHelper::custom('chothanhtoan', 'chothanhtoan.png', 'chothanhtoan.png', 'Pending', false, false);
+		//JToolBarHelper::custom('dathanhtoan', 'dathanhtoan.png', 'dathanhtoan.png', 'Confirmed', false, false);
+		//JToolBarHelper::custom('khongchapnhan', 'khongchapnhan.png', 'khongchapnhan.png', 'Cancelled', false, false);
 		
 		JToolBarHelper::deleteList();
 		
