@@ -27,28 +27,28 @@ defined('_JEXEC') or die('Restricted access');
                         <span class="prd-in-pk">Logo design</span>
                         <span class="current-price">Pris kr <strong><?php echo $this->list[0]->promotion_price;?></strong>,-</span>
                         <span class="old-price">(Førpris kr <?php echo number_format($this->list[0]->price,0,',','.');?>,-)</span>
-                        <a class="buy-btn" href="pakke_form.html">Køb Nu</a>
+                        <a class="buy-btn" href="index.php?option=com_ecommerce&task=pakkeform&id=<?php echo $this->list[0]->id;?>">Køb Nu</a>
                     </li>
                     <li>
                         <span class="illus silver"><?php echo $this->list[1]->name;?> Pakke</span>
                         <span class="prd-in-pk">Logo design,<br/>Visitkort design</span>
                         <span class="current-price">Pris kr <strong><?php echo $this->list[1]->promotion_price;?></strong>,-</span>
                         <span class="old-price">(Førpris kr <?php echo number_format($this->list[1]->price,0,',','.');?>,-)</span>
-                        <a class="buy-btn" href="pakke_form.html">Køb Nu</a>
+                        <a class="buy-btn" href="index.php?option=com_ecommerce&task=pakkeform&id=<?php echo $this->list[1]->id;?>">Køb Nu</a>
                     </li>
                     <li>
                         <span class="illus gold"><?php echo $this->list[2]->name;?> Pakke</span>
                         <span class="prd-in-pk">Logo design,<br/>Visitkort design,<br/>Brevpapir design</span>
                         <span class="current-price">Pris kr <strong><?php echo $this->list[2]->promotion_price;?></strong>,-</span>
                         <span class="old-price">(Førpris kr <?php echo number_format($this->list[2]->price,0,',','.');?>,-)</span>
-                        <a class="buy-btn" href="pakke_form.html">Køb Nu</a>
+                        <a class="buy-btn" href="index.php?option=com_ecommerce&task=pakkeform&id=<?php echo $this->list[2]->id;?>">Køb Nu</a>
                     </li>
                     <li>
                         <span class="illus diamond"><?php echo $this->list[3]->name;?> Pakke</span>
                         <span class="prd-in-pk">Logo design,<br/>Visitkort design,<br/>Brevpapir design,<br/>Brochure design</span>
                         <span class="current-price">Pris kr <strong><?php echo number_format($this->list[3]->promotion_price,0,',','.');?></strong>,-</span>
                         <span class="old-price">(Førpris kr <?php echo number_format($this->list[3]->price,0,',','.');?>,-)</span>
-                        <a class="buy-btn" href="pakke_form.html">Køb Nu</a>
+                        <a class="buy-btn" href="index.php?option=com_ecommerce&task=pakkeform&id=<?php echo $this->list[3]->id;?>">Køb Nu</a>
                     </li>
                 </ul>
                 <div class="product-desc">

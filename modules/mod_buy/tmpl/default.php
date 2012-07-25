@@ -55,6 +55,9 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 </div>
    
 </div>
+<?php if($_GET['task'] == 'kvittering'){
+	$session->destroy();	
+}?>
 <?php } else {?>
 
 <div id="sidebar">
@@ -81,25 +84,25 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 		
 		function submitLogoForm(){
 			if(($('#logo_name').val() == 'Navn på logo') || ($('#logo_name').val() == '')){
-				alert('Angiv logo navn');
+				jAlert('Angiv logo navn');
 				$('#logo_name').focus();
 				return false;
 			}
 			
 			if(($('#slogan').val() == 'Slogan') || ($('#slogan').val() == '')){
-				alert('Angiv slogan');
+				jAlert('Angiv slogan');
 				$('#slogan').focus();
 				return false;
 			}
 			
 			if($('#profession').val() == 0){
-				alert('Vælg venligst erhverv');
+				jAlert('Vælg venligst erhverv');
 				$('#profession').focus();
 				return false;
 			}
 			
 			if(($('#logo_info').val() == 'Giv en kort beskrivelse af din virksomhed/organisation, hvad du tilbyder. Du kan ogsa angive andre ideer.') && ($('#logo_request_file').val() == '') ){
-				alert('Angiv anmodning');
+				jAlert('Angiv anmodning');
 				$('#logo_info').focus();
 				return false;
 			}
@@ -109,19 +112,19 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 		
 		function submitCardForm(){
 			if($('#cardType').val() == 0 ){
-				alert('Vælg venligst en kort format');
+				jAlert('Vælg venligst en kort format');
 				$('#cardType').focus();
 				return false;
 			}
 			
 			if(($('#card_info').val() == 'Front &amp; Bagsiden kortoplysninger(Giv os disse oplysninger, du ønsker at være på kort: Firmanavn, Slogan (hvis nogen), Fulde navn (Navn på kort), Stillingsbetegnelse, Firma Adresse, Privat Adresse, telefon, email, hjemmeside, profession...') && ($('#card_request_file').val() == '') ){
-				alert('Angiv anmodning');
+				jAlert('Angiv anmodning');
 				$('#card_info').focus();
 				return false;
 			}
 			
 			if($('#card_logo_file').val() == ''){
-				alert('Upload logo fil');
+				jAlert('Upload logo fil');
 				$('#card_logo_file').focus();
 				return false;
 			}
@@ -131,19 +134,19 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 		
 		function submitLetterForm(){
 			if($('#brevpapirType').val() == 0 ){
-				alert('Vælg et produkt');
+				jAlert('Vælg et produkt');
 				$('#brevpapirType').focus();
 				return false;
 			}
 			
 			if(($('#letter_info').val() == 'Giv os disse produkt oplysninger, ideer, krav...') && ($('#letter_request_file').val() == '') ){
-				alert('Angiv anmodning');
+				jAlert('Angiv anmodning');
 				$('#letter_info').focus();
 				return false;
 			}
 			
 			if($('#letter_logo_file').val() == ''){
-				alert('Upload logo fil');
+				jAlert('Upload logo fil');
 				$('#letter_logo_file').focus();
 				return false;
 			}
@@ -153,19 +156,19 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 		
 		function submitBrochureForm(){
 			if($('#brochureType').val() == 0 ){
-				alert('Vælg et produkt');
+				jAlert('Vælg et produkt');
 				$('#brochureType').focus();
 				return false;
 			}
 			
 			if(($('#brochure_info').val() == 'Giv os disse produkt oplysninger, ideer, krav...') && ($('#brochure_request_file').val() == '') ){
-				alert('Angiv anmodning');
+				jAlert('Angiv anmodning');
 				$('#brochure_info').focus();
 				return false;
 			}
 			
 			if($('#brochure_logo_file').val() == ''){
-				alert('Upload logo fil');
+				jAlert('Upload logo fil');
 				$('#brochure_logo_file').focus();
 				return false;
 			}
@@ -175,7 +178,7 @@ if(($_GET['task'] == 'bekraeft') || ($_GET['task'] == 'kvittering')){//die($_GET
 		
 		function submitPackageForm(){
 			if(!$("input[name='package']:checked").val()){
-				alert('Vælg venligst en pakke');
+				jAlert('Vælg venligst en pakke');
 				return false;
 			}
 			

@@ -17,11 +17,13 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
 <link rel="stylesheet" type="text/css" media="print" href="<?php echo $template_dir;?>css/print.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $template_dir;?>css/typography.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $template_dir;?>css/styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $template_dir;?>css/jquery.alerts.css" />
 <script src="<?php echo $template_dir;?>js/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/jquery.form.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/jquery.validate.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/jquery.easing.min.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/menu.min.js" type="text/javascript"></script>
+<script src="<?php echo $template_dir;?>js/jquery.alerts.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo $template_dir;?>js/jquery-ui-1.8.11.custom.min.js" ></script>
 <script src="<?php echo $template_dir;?>js/dc.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -49,7 +51,7 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                 <div id="page">
                     <!-- header -->
                     <div id="header">
-                        <a class="logo fll" href="index.html" title="Design Creations - Levering Bedste Kvalitet Design"><img src="<?php echo $template_dir;?>img/dc_logo.png" alt="Design Creations - Levering Bedste Kvalitet Design" /></a>
+                        <a class="logo fll" href="index.php" title="Design Creations - Levering Bedste Kvalitet Design"><img src="<?php echo $template_dir;?>img/dc_logo.png" alt="Design Creations - Levering Bedste Kvalitet Design" /></a>
                         
                         <div class="mid-header fll">
                             <div class="slogan"><img src="<?php echo $template_dir;?>img/slogan.png" alt="Levering Bedste Kvalitet Design" /></div>
@@ -154,10 +156,10 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                             <!--Footer Social/Contact info-->
                             <div class="right-footer w260 flr">
                                 <div class="social fll pb5">
-                                    <a class="icon" href="" title="Følg os på Facebook"><img src="<?php echo $template_dir;?>img/fb_icon.png" alt="Facebook" /></a>
-                                    <a class="icon" href="" title="Følg os på Youtube"><img src="<?php echo $template_dir;?>img/yt_icon.png" alt="Youtube" /></a>
-                                    <a class="icon" href="" title="Følg os på Twitter"><img src="<?php echo $template_dir;?>img/tw_icon.png" alt="Twitter" /></a>
-                                    <a class="icon" href="" title="Tilmeld Nyhedsbrev"><img src="<?php echo $template_dir;?>img/newsletter_icon.png" alt="Tilmeld Nyhedsbrev" /></a>
+                                    <a class="icon" href="#" title="Følg os på Facebook"><img src="<?php echo $template_dir;?>img/fb_icon.png" alt="Facebook" /></a>
+                                    <a class="icon" href="#" title="Følg os på Youtube"><img src="<?php echo $template_dir;?>img/yt_icon.png" alt="Youtube" /></a>
+                                    <a class="icon" href="#" title="Følg os på Twitter"><img src="<?php echo $template_dir;?>img/tw_icon.png" alt="Twitter" /></a>
+                                    <a class="icon" href="#" title="Tilmeld Nyhedsbrev"><img src="<?php echo $template_dir;?>img/newsletter_icon.png" alt="Tilmeld Nyhedsbrev" /></a>
                                 </div>
                                 <div class="contact-info fll clr">
                                     <p>

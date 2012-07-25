@@ -5,26 +5,26 @@ defined('_JEXEC') or die('Restricted access');
 <script language="javascript">
 	function submitForm(){
 		if($('#logo_name').val() == ''){
-			alert('Angiv logo navn');
+			jAlert('Angiv logo navn');
 			$('#logo_name').focus();
 			return false;
 		}
 		
 		if($('#slogan').val() == ''){
-			alert('Angiv slogan');
+			jAlert('Angiv slogan');
 			$('#slogan').focus();
 			return false;
 		}
 		
 		if($('#professionSelect').val() == 0){
-			alert('Vælg venligst erhverv');
+			jAlert('Vælg venligst erhverv');
 			$('#profession').focus();
 			return false;
 		}
 		
 		<?php if($package->id == 6 || $package->id == 7 || $package->id == 8){?>
 		if($('#cardTypeSelect').val() == 0){
-			alert('Vælg venligst en kort format');
+			jAlert('Vælg venligst en kort format');
 			$('#cardTypeSelect').focus();
 			return false;
 		}
@@ -32,7 +32,7 @@ defined('_JEXEC') or die('Restricted access');
 		
 		<?php if($package->id == 7 || $package->id == 8){?>
 		if($('#brevpapirTypeSelect').val() == 0){
-			alert('Vælg et brevpapir produkt');
+			jAlert('Vælg et brevpapir produkt');
 			$('#brevpapirTypeSelect').focus();
 			return false;
 		}
@@ -40,14 +40,14 @@ defined('_JEXEC') or die('Restricted access');
 		
 		<?php if($package->id == 8){?>
 		if($('#brochureTypeSelect').val() == 0){
-			alert('Vælg et brochure produkt');
+			jAlert('Vælg et brochure produkt');
 			$('#brochureTypeSelect').focus();
 			return false;
 		}
 		<?php }?>
 		
 		if(($('#info').val() == 'Giv en kort beskrivelse af din virksomhed/organisation, hvad du tilbyder. Du kan ogsa angive andre ideer og dine behov...') && ($('#request_file').val() == '') ){
-			alert('Angiv anmodning');
+			jAlert('Angiv anmodning');
 			$('#info').focus();
 			return false;
 		}

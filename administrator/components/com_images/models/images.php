@@ -45,7 +45,7 @@ class ImagesModelImages extends JModel
 		
 		$category = $this->_search['category'] ;
 		if($category != 0 ){
-			$where[] = ' a.catid = '.$category;	
+			$where[] = ' a.catid = '.$category;
 		}
 				
 		
@@ -75,7 +75,7 @@ class ImagesModelImages extends JModel
 				' FROM #__images as a ' .
 				
 				$where .
-				' ORDER BY a.ordering';
+				' ORDER BY  a.catid, a.ordering';
 		
 		$db->setQuery($query, $this->_page->limitstart, $this->_page->limit);
 		$this->_list = $db->loadObjectList();
