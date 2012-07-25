@@ -110,7 +110,7 @@ class EcommerceController extends JController
 			$session->set('letter'.$i, $letter);
 			$session->set('brochure'.$i, $brochure);
 			$session->set('request_file'.$i, $request_file_name);
-			$session->set('logo_file'.$i, $logo_file);
+			$session->set('logo_file'.$i, $logo_file_name);
 			$session->set('quantity'.$i, 1);
 		}
 		else {
@@ -370,6 +370,9 @@ function kvittering(){
 			$db->setQuery($query_customer);
 			$db->query();
 		}
+		
+		$db->setQuery("SELECT order_date FROM #__pr_orders WHERE order_id = ".$order_id);
+		$order_date = $db->loadResult();
 				
 		//Send Email
 		$order_name		= $session->get('order_name','');
@@ -391,56 +394,157 @@ function kvittering(){
 	
 		$mail = new JConfig();
 		$to = $mail->mailfrom; // email admin
-		$subject = "Bekendtgørelse nr. ".$order_id;;
-		$body = "Oplysninger om bestilling";
-		$body .= "<br /> Navn: ".$order_name;
-		$body .= "<br /> Adresse : ". $order_address;
-		$body .= "<br /> By : ". $order_city;
-		$body .= "<br /> Land : ". $order_country;
-		$body .= "<br /> E-mail : ". $order_email;
-		$body .= "<br /> Telefon : ". $order_phone;
-		$body .= "<br /> Postnummer : ". $order_zipcode;
-		$body .= "<br /> Bemærkninger : ". $order_comment;
-		$body .= '
-		<table cellpadding="0" cellspacing="0">
-		<tbody>
-			<tr class="first">
-				<th class="left">Design service/Pakke </th>
-				
-				<th width="128" class="right">Stk. pris</th>
-				<th width="113">Antal</th>
-				<th width="117" class="right">Pris i alt</th>
-			</tr>';
-		if($session->get("subtotal")>0){
-			for ($i=1; $i<=$session->get('subtotal'); $i++) {'
-		<tr class="even">
-			<td width="156" class="left">'.$session->get("name".$i).'</td>
-			
-			<td class="right">DKK '.$session->get("price".$i).',00</td>
-			<td>'.$session->get('quantity'.$i).'</td>
-			<td class="right">DKK '.$session->get('price'.$i) * $session->get('quantity'.$i).',00</td>
+		$subject = "Bekendtgørelse nr. ".$order_id;
+		$body = ' <style type="text/css">
+<!--
+.Stil1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.Stil2 {font-family: Verdana, Arial, Helvetica, sans-serif}
+-->
+</style>
+			<table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+  <tr valign="top"> 
+    <td width=53% align="left" class="Stil1"><img src="'.JURI::base().'templates/tpl_designcreations/img/dc_logo.png" alt="vendor_image" border="0" /></td>
+    <td width="47%" align="right"></td>
+  </tr>
+  <tr>
+      <td colspan="2" class="Stil1">Tak for Deres ordre. Detaljerne for Deres ordre fremgår af nedenstående</td>
+  </tr>    
+  <tr bgcolor="white"> 
+    <td colspan="2">
+      <h3 class="Stil2">Ordrebekræftelse</h3>
+    </td>
+  </tr>
+</table>
+ 
+<table border=0 cellspacing=0 cellpadding=2 width=100%>
+   
+  <tr bgcolor="#CCCCCC" class="sectiontableheader"> 
+    <td colspan="2" class="Stil2"><b>Ordreinformation</b></td>
+  </tr>
+  <tr class="Stil1"> 
+    <td>Ordre nummer:</td><td>'.$order_id.'</td>
+  </tr>
+   
+  <tr class="Stil1"> 
+    <td>Ordre dato:</td><td>'.$order_date.'</td>
+  </tr>
+  
+  <tr class="sectiontableheader">
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#CCCCCC" class="sectiontableheader"> 
+    <td colspan="2"><b class="Stil2">Kundeinformation</b></td>
+  </tr>
+  <tr valign=top> 
+    <td width=50%>  
+      <table width=100% cellspacing=0 cellpadding=2 border=0>
+      	<tr> 
+          <td colspan="2"><b>Faktureringsoplysninger</b></td>
+        </tr>
+        <tr class="Stil1"> 
+          <td>Kundenavn:</td>
+          <td>'.$order_name.'</td>
+        </tr>
+         <tr class="Stil1"> 
+          <td>Adresse:</td>
+          <td>'.$order_address.'</td>
+        </tr>
+         <tr class="Stil1"> 
+          <td>Postnummer:</td>
+          <td>'.$order_zipcode.'</td>
+        </tr>
+         <tr class="Stil1"> 
+          <td>By:</td>
+          <td>'.$order_city.'</td>
+        </tr>
+         <tr class="Stil1"> 
+          <td>Telefon:</td>
+          <td>'.$order_phone.'</td>
+        </tr>
+        <tr class="Stil1"> 
+          <td>Email:</td>
+          <td><a href="mailto:'.$order_email.'">'.$order_email.'</a></td>
+        </tr>
+      </table>
+      
+    </td>
+    <td width=50%> 
+     
+      <table width=100% border=0 cellpadding=2 cellspacing=0 class="Stil1">
+        <tr> 
+          <td colspan="2"><b>Leveringsadresse</b></td>
+        </tr>
+     	<tr class="Stil1"> 
+          <td>Kundenavn:</td>
+          <td>'.$order_name.'</td>
+        </tr>
+         <tr class="Stil1"> 
+          <td>Adresse:</td>
+          <td>'.$order_address.'</td>
+        </tr>
+        <tr class="Stil1"> 
+          <td>Postnummer:</td>
+          <td>'.$order_zipcode.'</td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+  <tr> 
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  
+  <tr bgcolor="#CCCCCC" class="Stil2"> 
+    <td colspan="2"><b>Ordrelinier</b></td>
+  </tr>
+  <tr> 
+    <td colspan="2"> 
+      <table width=100% cellspacing=0 cellpadding=2 border=0>
+        <tr align=left class="Stil1">
+			<th>Antal</th>
+	        <th>Navn</th>
+			<th>Pris</th>
+			<th>Subtotal</th>
+        </tr>';
+	if($session->get("subtotal")>0){
+			for ($i=1; $i<=$session->get('subtotal'); $i++) {
+		$body .='
+		<tr class="Stil1">			
+			<th>'.$session->get('quantity'.$i).'</th>
+			<th>'.$session->get("name".$i).'</th>
+			<th>DKK '.$session->get("price".$i).',00</th>
+			<th>DKK '.$session->get('price'.$i) * $session->get('quantity'.$i).',00</th>
 		</tr>
 	   ';
 			}	
 		}
-		$body .='
-			<tr class="bottom">
-				<td colspan="2">&nbsp;</td>
-				<td class="right"><strong>Subtotal :</strong></td>
-				<td class="right"><span class="right red">DKK <strong>'.number_format($subprice,2,',','').'</strong></span></td>
-			</tr>
-			<tr class="bottom">
-				<td colspan="2">&nbsp;</td>
-				<td class="right">Heraf moms :</td>
-				<td class="right"><span class="right red">DKK '.number_format($tax,2,',','').'</span></span></td>
-			</tr>
-			<tr class="bottom">
-				<td colspan="2">&nbsp;</td>
-				<td class="right">At betale :</td>
-				<td class="right"><span class="right red">DKK '.number_format($subpay,2,',','').'</span></span></td>
-			</tr>
-		</tbody>
-	 </table>';
+	
+        $body .= '<tr class="Stil1"> 
+          <td colspan=4 align=right>&nbsp;&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="Stil1"> 
+          <td colspan=4 align=right><strong>Subtotal :</strong></td>
+          <td>DKK '.number_format($subprice,2,',','').'</td>
+        </tr>
+        
+        <tr class="Stil1"> 
+          <td colspan=4 align=right><strong>Heraf moms :</strong></td>
+          <td>DKK '.number_format($tax,2,',','').'</td>
+        </tr>
+        <tr class="Stil1"> 
+          <td colspan=4 align=right><b>At betale :</b></td>
+          <td>DKK '.number_format($subpay,2,',','').'</td>
+        </tr>
+      </table>
+    </td>
+  </tr>  
+</table>
+		';
+		
+		
 	 	$db->setQuery("SELECT email FROM #__users WHERE id = 62");
 		$admin_email = $db->loadResult();
 		
@@ -455,10 +559,7 @@ function kvittering(){
 		$message->setBody($body); // noi dung mail
 		$sender = array( $mail->mailfrom, $config->sitename ); // email he thong
 		$message->setSender($sender);
-		$sent = $message->send();				
-		
-		echo "OK";
-		
+		$sent = $message->send();		
 	}
 	
 	require_once(JPATH_COMPONENT . DS . "view" . DS . "kvittering.php");

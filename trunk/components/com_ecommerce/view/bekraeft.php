@@ -36,7 +36,7 @@ defined('_JEXEC') or die('Restricted access');
                             </tr>
                             <?php if($session->get('subtotal')>0){
 								for ($i=1; $i<=$session->get('subtotal'); $i++) {?> 
-                            <tr class="even">
+                            <tr class="<?php if($i%2) echo "even"; else echo "odd";?>">
                                 <td width="156" class="left"><?php echo $session->get('name'.$i); ?></td>
                                 
                                 <td class="right">DKK <?php echo $session->get('price'.$i); ?>,00</td>

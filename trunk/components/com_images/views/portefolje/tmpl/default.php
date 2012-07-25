@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
     <link rel="stylesheet" type="text/css" media="screen" href="templates/tpl_designcreations/css/fancybox.css" />
     <script type="text/javascript">
         $(function() {
-            $("#portfolio").tabs({fx:{slide: "toggle"}}).tabs("rotate", 0, true).tabs('option','selected','<?php echo $_GET['active'];?>');  
+            $("#portfolio").tabs({fx:{slide: "toggle"}}).tabs("rotate", 0, true).tabs('option','selected','<?php echo JRequest::getVar('active');?>');  
         });
     </script>
     

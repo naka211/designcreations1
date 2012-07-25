@@ -42,7 +42,7 @@
                             </tr>
                             <?php if($session->get('subtotal')>0){
 								for ($i=1; $i<=$session->get('subtotal'); $i++) {?> 
-                            <tr class="even">
+                            <tr class="<?php if($i%2) echo "even"; else echo "odd";?>">
                                 <td width="200" class="left"><?php echo $session->get('name'.$i); ?></td>
                                 <td width="130" class="center">DKK <?php echo $session->get('price'.$i); ?>,00</td>
                                 <td width="50" class="center"><?php echo $session->get('quantity'.$i); ?></td>

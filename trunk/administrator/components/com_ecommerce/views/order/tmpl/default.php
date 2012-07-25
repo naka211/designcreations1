@@ -2,6 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 ?>
+<form action="index.php" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
 <div class="col100">
   <fieldset class="adminform">
   <legend><?php echo JText::_( 'Order detail' ); ?></legend>
@@ -47,3 +48,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
   </fieldset>
   </div>
+ 	<input type="hidden" name="option" value="com_ecommerce" />
+    <input type="hidden" name="task" value="" />
+    <input type="hidden" name="controller" value="orders" />
+</form>

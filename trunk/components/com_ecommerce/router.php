@@ -3,32 +3,25 @@
 function ecommerceBuildRoute(&$query)
 {
 	$segments = array();
+	/*if (isset($query['option'])) {
+		$segments[] = $query['option'];
+		unset($query['option']);
+	}*/
 	if (isset($query['view'])) {
-		//$segments[] = $query['view'];
+		$segments[] = $query['view'];
 		unset($query['view']);
 	}
-	if(isset($query['catid']))
-	{
-		$segments[] = $query['catid'];
-		unset($query['catid']);
-	}
-	if(isset($query['id']))
-	{
-		$segments[] = $query['id'];
-		unset($query['id']);
-	}
 	
+	//print_r($segments); exit();
 	return $segments;
 }
 
 function ecommerceParseRoute($segments)
 {
-	//print_r($segments); die();
+	//print_r($segments); exit();
 	$vars = array();
 	$vars['view'] = $segments[0];
-	if($vars['view']=="list") $vars['catid'] = intval($segments[1]);
-	if($vars['view']=="detail") $vars['id'] = intval($segments[2]);	
 		
-return $vars;
+	return $vars;
 }
 ?>

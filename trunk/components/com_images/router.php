@@ -7,28 +7,22 @@ function ImagesBuildRoute(&$query)
 		//$segments[] = $query['view'];
 		unset($query['view']);
 	}
-	if(isset($query['catid']))
+	if(isset($query['active']))
 	{
-		$segments[] = $query['catid'];
-		unset($query['catid']);
-	}
-	if(isset($query['id']))
-	{
-		$segments[] = $query['id'];
-		unset($query['id']);
+		$segments[] = $query['active'];
+		unset($query['active']);
 	}
 	
 	return $segments;
 }
 
-function ImageParseRoute($segments)
+function ImagesParseRoute($segments)
 {
 	//print_r($segments); die();
 	$vars = array();
-	$vars['view'] = $segments[0];
-	if($vars['view']=="list") $vars['catid'] = intval($segments[1]);
-	if($vars['view']=="detail") $vars['id'] = intval($segments[2]);	
-		
-return $vars;
+	$vars['view'] = 'portefolje';
+	$vars['active'] = $segments[0];
+	//print_r($vars); die();
+	return $vars;
 }
 ?>

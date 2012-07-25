@@ -10,25 +10,25 @@ $cparams = JComponentHelper::getParams ('com_media');
 		else return false;
     	};
 		if(jQuery('#name').val() == '' || jQuery('#name').val() == 'Navn'){
-			alert('Angiv dit navn');
+			jAlert('Angiv dit navn');
 			$('#name').focus();
 			return false;
 		}
 		
 		if(jQuery('#email').val() == '' || jQuery('#email').val() == 'Email'){
-			alert('Indtast venligst din e-mail');
+			jAlert('Indtast venligst din e-mail');
 			$('#email').focus();
 			return false;
 		}
 		
 		if(!isEmail(jQuery('#email').val())){
-			alert('Indtast venligst e-mail korrekt');
+			jAlert('Indtast venligst e-mail korrekt');
 			$('#email').focus();
 			return false;
 		}
 		
 		if(jQuery('#text').val() == '' || jQuery('#text').val() == 'Din besked'){
-			alert('Skal du indtaste din besked');
+			jAlert('Skal du indtaste din besked');
 			$('#text').focus();
 			return false;
 		}
