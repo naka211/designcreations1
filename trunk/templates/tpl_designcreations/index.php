@@ -162,11 +162,12 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                                     <a class="icon" href="#" title="Tilmeld Nyhedsbrev"><img src="<?php echo $template_dir;?>img/newsletter_icon.png" alt="Tilmeld Nyhedsbrev" /></a>
                                 </div>
                                 <div class="contact-info fll clr">
-                                    <p>
+                                    <!--<p>
                                         KONTORADRESSE:<br/>
                                         Islevdalvej 148  - 2610 Rødovre<br/>
                                         <a href="mailto:info@designcreations.dk">info@designcreations.dk</a>
-                                    </p>
+                                    </p>-->
+                                    {module Address}
                                 </div>
                             </div>
                             <!-- / end footer Social/Contact info-->
@@ -179,8 +180,9 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                     
                     <!-- Begin footer -->
                     <div id="footer">
-                        <p class="copyright fll">Copyright © 2011 <a href="http://www.designcreations.dk">Designcreations.dk</a>. All rights reserved.</p>
-                        <p class="info flr w240">Designed by <a href="http://www.mywebcreations.dk">mywebcreations.dk</a></p>
+                    	{module Footer}
+                        <!--<p class="copyright fll">Copyright © 2011 <a href="http://www.designcreations.dk">Designcreations.dk</a>. All rights reserved.</p>
+                        <p class="info flr w240">Designed by <a href="http://www.mywebcreations.dk">mywebcreations.dk</a></p>-->
                     </div>
                     <!-- / end footer -->
                     
