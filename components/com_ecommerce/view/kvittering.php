@@ -52,12 +52,12 @@ defined('_JEXEC') or die('Restricted access');
                             <tr class="bottom">
                                 <td colspan="2">&nbsp;</td>
                                 <td class="right"><strong>Subtotal :</strong></td>
-                                <td class="right"><span class="right red">DKK <strong><?php echo number_format($sub,2,',','');?></strong></span></td>
+                                <td class="right"><span class="right red">DKK <strong><?php echo number_format($sub,2,',','.');?></strong></span></td>
                             </tr>
                             <tr class="bottom">
                                 <td colspan="2">&nbsp;</td>
                                 <td class="right">Heraf moms :</td>
-                                <td class="right"><span class="right red">DKK <?php echo number_format($tax,2,',','');?></span></span></td>
+                                <td class="right"><span class="right red">DKK <?php echo number_format($tax,2,',','.');?></span></span></td>
                             </tr>
                         </tbody>
                      </table>
@@ -65,13 +65,13 @@ defined('_JEXEC') or die('Restricted access');
                         <div class="total-inner rounded">
                             <dl class="total-list">
                                 <dt>Subtotal :</dt>
-                                <dd>DKK <strong><?php echo $sub;?>,-</strong></dd>
+                                <dd>DKK <strong><?php echo number_format($sub,2,',','.');?></strong></dd>
                                 <dt>Heraf moms :</dt>
-                                <dd>DKK <strong><?php echo number_format($tax,2,',','');?></strong></dd>
+                                <dd>DKK <strong><?php echo number_format($tax,2,',','.');?></strong></dd>
                             </dl>
                             <dl class="total">
                                 <dt>At betale :</dt>
-                                <dd>DKK <strong><?php echo number_format($sub+$tax,2,',','');?></strong></dd>
+                                <dd>DKK <strong><?php echo number_format($sub+$tax,2,',','.');?></strong></dd>
                             </dl>
                         </div>
                      </div>

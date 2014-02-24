@@ -44,12 +44,12 @@
 								for ($i=1; $i<=$session->get('subtotal'); $i++) {?> 
                             <tr class="<?php if($i%2) echo "even"; else echo "odd";?>">
                                 <td width="200" class="left"><?php echo $session->get('name'.$i); ?></td>
-                                <td width="130" class="center">DKK <?php echo $session->get('price'.$i); ?>,00</td>
+                                <td width="130" class="center">DKK <?php echo number_format($session->get('price'.$i),0,'','.'); ?></td>
                                 <td width="50" class="center"><?php echo $session->get('quantity'.$i); ?></td>
                                 <td width="50" class="actions center" colspan="2">
                                     <a class="button" href="index.php?option=com_ecommerce&task=delcart&i=<?php echo $i; ?>" title="Slet denne konto"><img src="templates/tpl_designcreations/img/delete_cart.png" alt="Slet Kurv" /></a>
                                 </td>
-                                <td class="right">DKK <?php echo $session->get('price'.$i) * $session->get('quantity'.$i); ?>,00</td>
+                                <td class="right">DKK <?php echo number_format($session->get('price'.$i) * $session->get('quantity'.$i),0,'','.'); ?></td>
                             </tr>
                             <?php 
 								$sub += $session->get('price'.$i) * $session->get('quantity'.$i);
@@ -60,17 +60,17 @@
                             <tr class="bottom">
                                 <td colspan="4">&nbsp;</td>
                                 <td width="80" class="right"><strong>Subtotal :</strong></td>
-                                <td class="right red">DKK <strong><?php echo number_format($sub,2,',','');?></strong></td>
+                                <td class="right red">DKK <strong><?php echo number_format($sub,0,',','.');?></strong></td>
                             </tr>
                             <tr class="bottom">
                                 <td colspan="4">&nbsp;</td>
                                 <td width="80" class="right">Heraf moms :</td>
-                                <td class="right red">DKK <?php echo number_format($tax,2,',','');?></td>
+                                <td class="right red">DKK <?php echo number_format($tax,0,',','.');?></td>
                             </tr>
                             <tr class="bottom">
                                 <td colspan="6" class="last">
                                     <label><input class="check-box" type="checkbox" name="accept" id="accept" />Jeg accepterer</label>
-                                    <a href="index.php?option=com_ecommerce&view=betingelser&Itemid=1">handelsbetingelserne</a>
+                                    <a href="index.php?option=com_ecommerce&view=betingelser&Itemid=1" target="_blank">handelsbetingelserne</a>
                                 </td>
                             </tr>
                         </tbody>

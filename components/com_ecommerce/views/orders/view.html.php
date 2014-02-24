@@ -11,7 +11,7 @@ class EcommerceViewOrders extends JView
 		$model = &$this->getModel();
 		
 		//$detail = JRequest::getVar('detail',0);
-		$order_id = JRequest::getVar('order_id',0);
+		$order_id = JRequest::getVar('id',0);
 		if($order_id==0){
 			$lists = $model->getList();
 			$sotrang = $model->getSotrang();

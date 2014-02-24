@@ -68,7 +68,7 @@ class ImagesModelPortefolje extends JModel
 		
 		$page3 = JRequest::getVar('page3',1);
 		//get total record
-		$query = "SELECT count(id) FROM #__images where catid = 3 AND publish = 1 ORDER BY ordering" ;
+		$query = "SELECT count(id) FROM #__images where catid = 3 AND publish = 1 ORDER BY name ASC" ;
 		$this->_db->setQuery( $query );
 		//tong so record
 		$total = $this->_db->loadResult();
@@ -92,7 +92,7 @@ class ImagesModelPortefolje extends JModel
 		
 		$page4 = JRequest::getVar('page4',1);
 		//get total record
-		$query = "SELECT count(id) FROM #__images where catid = 4 AND publish = 1 ORDER BY ordering" ;
+		$query = "SELECT count(id) FROM #__images where catid = 4 AND publish = 1 ORDER BY name ASC" ;
 		$this->_db->setQuery( $query );
 		//tong so record
 		$total = $this->_db->loadResult();

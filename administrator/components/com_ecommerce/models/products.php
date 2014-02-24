@@ -82,11 +82,11 @@ class EcommerceModelProducts extends JModel
 		$this->_page = new JPagination($total, $limitstart, $limit);
 
 		// Get the articles
-		$query = 'SELECT a.* ' .
-				' FROM #__pr_product as a ' .
+		$query = 'SELECT a.*, c.name as catname ' .
+				' FROM #__pr_product as a INNER JOIN #__pr_category c ON a.category_id = c.id ' .
 				
 				$where .
-				' GROUP BY a.id ORDER BY a.ordering';
+				' ORDER BY a.category_id, a.id';
 		//print_r ($query);
 		$db->setQuery($query, $this->_page->limitstart, $this->_page->limit);
 		$this->_list = $db->loadObjectList();

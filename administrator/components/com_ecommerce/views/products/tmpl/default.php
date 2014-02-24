@@ -1,19 +1,6 @@
 ﻿<?
 defined( '_JEXEC' ) or die( 'Restricted access' );
 ?>
-<script language="javascript">
-	function openPage(url, vHeight, vWidth)
-	{ 
-		 winDef = 'status=yes,resizable=no,scrollbars=yes,fullscreen=no,titlebar=no,height='.concat(vHeight).concat(',').concat('width=').concat(vWidth).concat(',');
-		 winDef = winDef.concat('top=').concat((screen.height - vHeight)/2).concat(',');
-		 winDef = winDef.concat('left=').concat((screen.width - vWidth)/2);
-		 
-		 var winmedia ;
-		 winmedia= window.open(url,'downwindow', winDef);
-	
-	}
-
-</script>
 <form action="index.php" method="post" name="adminForm" >
 Product name
 <input type="text" name="title" id="title" value="<?php echo $this->search['title'];?>" class="text_area"  title="<?php echo JText::_( 'Filter by Title' );?>"/>
@@ -47,7 +34,9 @@ Category
 			<th width="10%">
 				Product name
 			</th>
-						
+			<th width="10%">
+				Category
+			</th>
 			<th width="10%">
 				Price
 			</th>
@@ -85,7 +74,9 @@ Category
 			<td align="center">
 				<a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
 			</td>
-						
+			<td align="center">
+				<?php echo $row->catname; ?>
+			</td>	
 			<td align="center">
 				<strong><div style="color:#CC3300"><?php echo $row->price; ?>,- DKK</div></strong>
 			</td>

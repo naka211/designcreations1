@@ -43,7 +43,7 @@
 		// Public methods
 		
 		alert: function(message, title, callback) {
-			if( title == null ) title = 'Alert';
+			if( title == null ) title = 'ADVARSEL!';
 			$.alerts._show(title, message, null, 'alert', function(result) {
 				if( callback ) callback(result);
 			});

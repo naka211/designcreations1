@@ -75,8 +75,8 @@ $cparams = JComponentHelper::getParams ('com_media');
                             <label>Jeg ønsker at vide mere om:</label>
                             <label><input class="check-box" type="checkbox" name="logo" value="Logo Design">Logo Design</label>
                             <label><input class="check-box" type="checkbox" name="visitkort" value="Visitkort Design">Visitkort Design</label>
-                            <label><input class="check-box" type="checkbox" name="brevpapir" value="Brevpapir Design">Brevpapir Design</label>
-                            <label><input class="check-box" type="checkbox" name="brochure" value="Brochure Design">Brochure Design</label>
+                            <label><input class="check-box" type="checkbox" name="website" value="Website template">Website template</label>
+                            <label><input class="check-box" type="checkbox" name="webshop" value="Webshop template">Webshop template</label>
                         </fieldset>
                         <div class="actions-ctn">
                            <!-- <a class="send-btn fll" href="">Send</a>
@@ -91,19 +91,30 @@ $cparams = JComponentHelper::getParams ('com_media');
                         <?php echo JHTML::_( 'form.token' ); ?>
                     </form>
                     <div class="contact-info rounded">
-                        <h1><img src="templates/tpl_designcreations/img/dc_title.png" alt="Design Creations" /></h1>
+                        <h1><img src="templates/tpl_designcreations/img/3d_title.png" alt="Design Creations" /></h1>
                         <div class="contact-info-inner">
                             <span class="contact-img"><img src="templates/tpl_designcreations/img/contact.png" alt="Design creations contact" /></span>
                             <p class="contact-address">
-                                KONTORADRESSE:<br/>
+                            	 <?php 
+								 	$db = JFactory::getDBO();
+									$query = "SELECT introtext FROM #__content WHERE id = 6 AND state = 1";
+									$db->setQuery($query);
+									echo $db->loadResult();
+									?>
+                               <!-- KONTORADRESSE:<br/>
                                 Islevdalvej 148 <br/>
                                 2610 Rødovre<br/>
-                                <a href="mailto:info@designcreations.dk">info@designcreations.dk</a>
+                                <a href="mailto:info@designcreations.dk">info@3designs.dk</a>-->
                             </p>
                             <p class="contact-person">
-                                <span class="blue"><strong>Kim Hau</strong></span><br/>Founder<br/>
-                                <a href="mailto:kim@designcreations.dk">kim@designcreations.dk </a><br/>
-                                Tlf. 2772 5079 
+                            	<?php 
+									$query = "SELECT introtext FROM #__content WHERE id = 7 AND state = 1";
+									$db->setQuery($query);
+									echo $db->loadResult();
+									?>
+                                <!--<span class="blue"><strong>Kim Hau</strong></span><br/>Founder<br/>
+                                <a href="mailto:kim@designcreations.dk">kim@3designs.dk </a><br/>
+                                Tlf. 2772 5079 -->
                             </p>
                         </div>
                     </div>

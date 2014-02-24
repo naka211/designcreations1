@@ -53,7 +53,7 @@ class EcommerceModelOrders extends JModel
 				' FROM #__pr_orders ' .
 				
 				$where .
-				' ORDER BY #__pr_orders.order_date DESC';
+				' ORDER BY order_date DESC';
 
 		//print_r ($query);
 		$db->setQuery($query, $this->_page->limitstart, $this->_page->limit);
@@ -85,7 +85,6 @@ class EcommerceModelOrders extends JModel
 			foreach($cids as $cid) {
 				$db->setQuery("SELECT count(order_id) FROM #__pr_orders WHERE order_id=$cid");
 				$total = $db->loadResult();
-				
 				if($total!= 0 ) {
 					if (!$row->delete( $cid )) {
 						$this->setError( $row->getErrorMsg() );
@@ -95,7 +94,8 @@ class EcommerceModelOrders extends JModel
 					$this->setError( " Can not delete! " );
 					return false;
 				}
-				
+				$db->setQuery("DELETE FROM #__pr_cart WHERE order_id = $cid");
+				$db->query();
 			}						
 		}
 		return true;

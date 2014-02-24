@@ -49,9 +49,9 @@ function submitbutton(pressbutton){
       		<select name="catid" id="catid">
             <option value="0" >Select category</option>
             <option value="1" <?php if($this->image->catid == 1) echo 'selected="selected"';?>>Logo design</option>
-            <option value="2" <?php if($this->image->catid == 2) echo 'selected="selected"';?>>Visitkort design</option>
-            <option value="3" <?php if($this->image->catid == 3) echo 'selected="selected"';?>>Brapapir design</option>
-            <option value="4" <?php if($this->image->catid == 4) echo 'selected="selected"';?>>A4 Brochure design</option>
+            <option value="2" <?php if($this->image->catid == 2) echo 'selected="selected"';?>>Visitkort & Brevpapir</option>
+            <option value="3" <?php if($this->image->catid == 3) echo 'selected="selected"';?>>Website Templates</option>
+            <option value="4" <?php if($this->image->catid == 4) echo 'selected="selected"';?>>Webshop Templates</option>
             </select>
       </td>
     </tr>

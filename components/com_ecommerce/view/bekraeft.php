@@ -2,7 +2,6 @@
 defined('_JEXEC') or die('Restricted access');
 //print_r($session);exit();
 ?>
-<script type="text/javascript" src="http://www.epay.dk/js/standardwindow.js"></script>
 <div id="breadcumbs" class="w700 fll clr">
     <a class="home-link" href="index.php" title="Forside">&nbsp;</a>
     <span><img src="templates/tpl_designcreations/img/arrow_s1.png" alt="" /></span>
@@ -39,9 +38,9 @@ defined('_JEXEC') or die('Restricted access');
                             <tr class="<?php if($i%2) echo "even"; else echo "odd";?>">
                                 <td width="156" class="left"><?php echo $session->get('name'.$i); ?></td>
                                 
-                                <td class="right">DKK <?php echo $session->get('price'.$i); ?>,00</td>
+                                <td class="right">DKK <?php echo number_format($session->get('price'.$i),0,'','.'); ?></td>
                                 <td><?php echo $session->get('quantity'.$i); ?></td>
-                                <td class="right">DKK <?php echo $session->get('price'.$i) * $session->get('quantity'.$i); ?>,00</td>
+                                <td class="right">DKK <?php echo number_format($session->get('price'.$i) * $session->get('quantity'.$i),0,'','.'); ?></td>
                             </tr>
                            	<?php 
 								$sub += $session->get('price'.$i) * $session->get('quantity'.$i);
@@ -52,12 +51,12 @@ defined('_JEXEC') or die('Restricted access');
                             <tr class="bottom">
                                 <td colspan="2">&nbsp;</td>
                                 <td class="right"><strong>Subtotal :</strong></td>
-                                <td class="right"><span class="right red">DKK <strong><?php echo number_format($sub,2,',','');?></strong></span></td>
+                                <td class="right"><span class="right red">DKK <strong><?php echo number_format($sub,0,',','.');?></strong></span></td>
                             </tr>
                             <tr class="bottom">
                                 <td colspan="2">&nbsp;</td>
                                 <td class="right">Heraf moms :</td>
-                                <td class="right"><span class="right red">DKK <?php echo number_format($tax,2,',','');?></span></td>
+                                <td class="right"><span class="right red">DKK <?php echo number_format($tax,0,',','.');?></span></td>
                             </tr>
                         </tbody>
                      </table>
@@ -65,20 +64,20 @@ defined('_JEXEC') or die('Restricted access');
                         <div class="total-inner rounded">
                             <dl class="total-list">
                                 <dt>Subtotal :</dt>
-                                <dd>DKK <strong><?php echo $sub;?>,-</strong></dd>
+                                <dd>DKK <strong><?php echo number_format($sub,0,',','.');?></strong></dd>
                                 <dt>Heraf moms :</dt>
-                                <dd>DKK <strong><?php echo number_format($tax,2,',','');?></strong></dd>
+                                <dd>DKK <strong><?php echo number_format($tax,0,',','.');?></strong></dd>
                             </dl>
                             <dl class="total">
                                 <dt>At betale :</dt>
-                                <dd>DKK <strong><?php echo number_format($sub+$tax,2,',','');?></strong></dd>
+                                <dd>DKK <strong><?php echo number_format($sub+$tax,0,',','.');?></strong></dd>
                             </dl>
                         </div>
                      </div>
                 </div>
                 <div class="actions-ctn">
                     <a class="back-btn" href="index.php?option=com_ecommerce&task=levering">Tilbage</a>
-                    <a class="confirm-btn flr" href="javascript:void(0);" onclick="open_ePay_window();">Næste</a>
+                    <a class="confirm-btn flr" href="javascript:void(0);" onclick="$('#leasingForm').submit();">Næste</a>
                 </div>
             </div>
             <div class="content-box-decor box-decor-btm w700 fll clr"><span></span></div>
@@ -87,16 +86,44 @@ defined('_JEXEC') or die('Restricted access');
     </div>
     
 </div>
-<form action="https://ssl.ditonlinebetalingssystem.dk/popup/default.asp" method="post" name="ePay" target="ePay_window" id="ePay">
-    <input type="hidden" name="cms" value="joomla" />
-    <input type="hidden" name="merchantnumber" value="8886346" />
-    <input type="hidden" name="orderid" value="<?php echo $order_id ?>" />
-    <input type="hidden" name="amount" value="<?php echo $subpay*100 ?>" />
-    <input type="hidden" name="currency" value="208" />
-    <input type="hidden" name="accepturl" value="index.php?option=com_ecommerce&task=kvittering" />
-    <input type="hidden" name="callbackurl" value="index.php?option=com_ecommerce&task=success&cookie=<?php echo getenv("HTTP_COOKIE"); ?>" />
-    <input type="hidden" name="declineurl" value="index.php?option=com_ecommerce&task=bekraeft&cookie=<?php echo getenv("HTTP_COOKIE"); ?>" />
-    <input type="hidden" name="instantcallback" value="1" />
-    <input type="hidden" name="HTTP_COOKIE" value="<?php echo getenv("HTTP_COOKIE") ?>">
-    <input type="hidden" name="language" value="2">
+<?php
+$protocol = '6';
+$msgtype = 'authorize';
+$merchant = '33448007';
+$language = 'da';
+$ordernumber = sprintf('%05d',$order_id);
+$amount = $subpay*100;
+
+$currency = 'DKK';
+$continueurl = JURI::base().'index.php?option=com_ecommerce&task=kvittering';
+$cancelurl = JURI::base().'index.php?option=com_ecommerce&task=bekraeft';
+$callbackurl = '';
+                
+$autocapture = '0';
+$cardtypelock = 'creditcard';
+$description = 'description';
+$testmode = 0;
+$splitpayment = 0;
+$md5word = '5R2uh9M634523H9qPV8S8bZzm34d72yc1vgKDX9i7Ap1a9TUk8I6L86xl2YE5e45';
+$md5check = md5($protocol . $msgtype . $merchant . $language . $ordernumber . $amount . $currency . $continueurl . $cancelurl . $callbackurl . $autocapture . $cardtypelock . $description . $testmode. $splitpayment . $md5word);
+?>
+
+<form id="leasingForm" action="https://secure.quickpay.dk/form/" method="post">
+    <input type="hidden" name="protocol" value="<?php echo $protocol ?>" />
+    <input type="hidden" name="msgtype" value="<?php echo $msgtype ?>" />
+    <input type="hidden" name="merchant" value="<?php echo $merchant ?>" />
+    <input type="hidden" name="language" value="<?php echo $language ?>" />
+    <input type="hidden" name="ordernumber" value="<?php echo $ordernumber ?>" />
+    <input type="hidden" name="amount" value="<?php echo $amount ?>" />
+    <input type="hidden" name="currency" value="<?php echo $currency ?>" />
+    <input type="hidden" name="continueurl" value="<?php echo $continueurl ?>" />
+    <input type="hidden" name="cancelurl" value="<?php echo $cancelurl ?>" />
+    <input type="hidden" name="callbackurl" value="<?php echo $callbackurl ?>" />
+    <input type="hidden" name="autocapture" value="<?php echo $autocapture ?>" />
+    <input type="hidden" name="cardtypelock" value="<?php echo $cardtypelock ?>" />
+    <input type="hidden" name="md5check" value="<?php echo $md5check ?>" />
+	<input type="hidden" name="description" value="<?php echo $description ?>" />
+	<input type="hidden" name="testmode" value="<?php echo $testmode ?>" />
+	<input type="hidden" name="splitpayment" value="<?php echo $splitpayment ?>" />
+    <!--<input type="submit" value="Open Quickpay payment window" />-->
 </form>

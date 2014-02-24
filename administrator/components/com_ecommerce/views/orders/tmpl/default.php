@@ -44,15 +44,14 @@ function show_orderdetail(order,order_id){
 	for ($i=0, $n=count( $this->orders ); $i < $n; $i++)
 	{		$row = &$this->orders[$i];
 		$checked 	 = JHTML::_('grid.id',   $i, $row->order_id );
-		
-		$status = array('', 'chothanhtoan', 'dathanhtoan', 'dagiaohang', 'khongchapnhan');
-		?>
+	?>
 		<tr class="<?php echo "row$k"; ?>">
 			<td align="center">
 				<?php echo $checked; ?>
 			</td>
 			<td align="center">
 				<a href="index.php?option=com_ecommerce&controller=orders&task=edit&cid[]=<?php echo $row->order_id?>">
+                <!---->
 				<?php echo sprintf("%05d", $row->order_id); ?>
 				</a>
 			</td>
@@ -69,7 +68,7 @@ function show_orderdetail(order,order_id){
 				<?php echo $row->order_email; ?> 
 			</td>
 			<td align="center">
-				<?php echo $row->order_total; ?>  DKK
+				<strong><?php echo number_format($row->order_total + ($row->order_total * 0.25),2,',','.');?>  DKK</strong>
 			</td>
 			
 		</tr>
@@ -77,14 +76,12 @@ function show_orderdetail(order,order_id){
 		$k = 1 - $k;
 	}
 	?>
-			<!--<tr>
+			<tr>
 				<td colspan="10">
 					<?php echo $this->page->getListFooter(); ?><br />
-					<img src="../images/chothanhtoan.png" width="20" height="20" align="absmiddle" />: Pending &nbsp;
-					<img src="../images/dathanhtoan.png" width="20" height="20" align="absmiddle" />: Confirmed &nbsp;
-					<img src="../images/khongchapnhan.png" width="20" height="20" align="absmiddle" />: Cancelled
+					
 				</td>
-			</tr>-->
+			</tr>
 	</table>
 </div>
 

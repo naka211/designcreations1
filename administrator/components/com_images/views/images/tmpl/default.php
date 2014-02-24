@@ -1,6 +1,6 @@
-﻿<?
+<?
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$cat_arr = array(1=>'Logo design', 2=>'Visitkort design', 3=>'Brapapir design', 4=>'A4 Brochure design');
+$cat_arr = array(1=>'Logo design', 2=>'Visitkort & Brevpapir', 3=>'Website Templates', 4=>'Webshop Templates');
 ?>
 
 <form action="index.php" method="post" name="adminForm" >
@@ -12,9 +12,9 @@ Category
 <select name="category" id="category">
 <option  value="0" >All category</option>
 <option value="1" <?php if($this->search['category'] == 1) echo 'selected="selected"';?>>Logo design</option>
-<option value="2" <?php if($this->search['category'] == 2) echo 'selected="selected"';?>>Visitkort design</option>
-<option value="3" <?php if($this->search['category'] == 3) echo 'selected="selected"';?>>Brapapir design</option>
-<option value="4" <?php if($this->search['category'] == 4) echo 'selected="selected"';?>>A4 Brochure design</option>
+<option value="2" <?php if($this->search['category'] == 2) echo 'selected="selected"';?>>Visitkort & Brevpapir</option>
+<option value="3" <?php if($this->search['category'] == 3) echo 'selected="selected"';?>>Website Templates</option>
+<option value="4" <?php if($this->search['category'] == 4) echo 'selected="selected"';?>>Webshop Templates</option>
 </select>
 
 &nbsp;&nbsp;

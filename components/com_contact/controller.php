@@ -131,14 +131,14 @@ class ContactController extends JController
 		
 		$logo		= JRequest::getVar( 'logo', 		'',			'post' );
 		$visitkort	= JRequest::getVar( 'visitkort', 	'',			'post' );
-		$brevpapir	= JRequest::getVar( 'brevpapir', 	'',			'post' );
-		$brochure	= JRequest::getVar( 'brochure', 	'',			'post' );
+		$website	= JRequest::getVar( 'website', 	'',			'post' );
+		$webshop	= JRequest::getVar( 'webshop', 	'',			'post' );
 
 		$arr = array();
 		if($logo) $arr[] = $logo;
 		if($visitkort) $arr[] = $visitkort;
-		if($brevpapir) $arr[] = $brevpapir;
-		if($brochure) $arr[] = $brochure;
+		if($website) $arr[] = $website;
+		if($webshop) $arr[] = $webshop;
 		$str = implode(',', $arr);
 		
 		if($phone) $phone = " Telefon: ".$phone;
