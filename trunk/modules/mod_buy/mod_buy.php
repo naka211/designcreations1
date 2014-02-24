@@ -6,6 +6,8 @@ require_once ('modules/mod_buy/helper.php');
 
 $product = modBuyHelper::getProduct(1);
 $packages = modBuyHelper::getProduct(2);
+$websites = modBuyHelper::getProduct(3);
+$webshops = modBuyHelper::getProduct(4);
 require(JModuleHelper::getLayoutPath('mod_buy'));
 
 

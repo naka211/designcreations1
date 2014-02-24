@@ -21,9 +21,9 @@ defined('_JEXEC') or die('Restricted access');
     
         <ul class="tabs-ctn">
             <li class="tab-item ui-tabs-selected" id="logoTab"><a href="#logoFaq"><span class="logo">Logo Design</span></a></li>
-            <li class="tab-item" id="cardTab"><a href="#visitkortFaq"><span class="visitcard">Visitkort Design</span></a></li>
-            <li class="tab-item" id="stationaryTab"><a href="#brevpapirFaq"><span class="stationary">Brevpapir Design</span></a></li>
-            <li class="tab-item" id="brochureTab"><a href="#brochureFaq"><span class="brochure">Brochure Design</span></a></li>
+            <li class="tab-item" id="cardTab"><a href="#visitkortFaq"><span class="visitcard">Visitkort & Brevpapir</span></a></li>
+            <li class="tab-item" id="websiteTab"><a href="#websiteFaq"><span class="website">Website Templates</span></a></li>
+            <li class="tab-item" id="webshopTab"><a href="#webshopFaq"><span class="webshop">Webshop Templates</span></a></li>
         </ul>
         
         <!-- logo Content -->
@@ -44,7 +44,7 @@ defined('_JEXEC') or die('Restricted access');
                 <!-- Contact button -->
                 <div class="contact-ctn">
                     <span>Har du spørgsmål om andre produkter, pakker eller priser?</span>
-                    <a class="contact-btn" href="kontakt.html">Kontakt os for yderligere information</a>
+                    <a class="contact-btn" href="index.php?option=com_contact&view=contact&id=1&Itemid=7">Kontakt os for yderligere information</a>
                 </div>
                 
             </div>
@@ -68,7 +68,7 @@ defined('_JEXEC') or die('Restricted access');
                 <!-- Contact button -->
                 <div class="contact-ctn">
                     <span>Har du spørgsmål om andre produkter, pakker eller priser?</span>
-                    <a class="contact-btn" href="kontact.html">Kontakt os for yderligere information</a>
+                    <a class="contact-btn" href="index.php?option=com_contact&view=contact&id=1&Itemid=7">Kontakt os for yderligere information</a>
                 </div>
                 
             </div>
@@ -76,7 +76,7 @@ defined('_JEXEC') or die('Restricted access');
         </div>
 
         <!-- Brevpapir Content -->
-        <div id="brevpapirFaq" class="ui-tabs-panel ui-tabs-hide">
+        <div id="websiteFaq" class="ui-tabs-panel ui-tabs-hide">
             <div class="tab-content-ctn">
                 <!-- logo price-->
                 <div class="scroll-content">
@@ -92,7 +92,7 @@ defined('_JEXEC') or die('Restricted access');
                 <!-- Contact button -->
                 <div class="contact-ctn">
                     <span>Har du spørgsmål om andre produkter, pakker eller priser?</span>
-                    <a class="contact-btn" href="kontact.html">Kontakt os for yderligere information</a>
+                    <a class="website-btn" href="index.php?option=com_images&view=portefolje&Itemid=4&active=websitePortefolje"></a>
                 </div>
                 
             </div>
@@ -100,7 +100,7 @@ defined('_JEXEC') or die('Restricted access');
         </div>
         
         <!-- Brochure Content -->
-        <div id="brochureFaq" class="ui-tabs-panel ui-tabs-hide">
+        <div id="webshopFaq" class="ui-tabs-panel ui-tabs-hide">
             <div class="tab-content-ctn">
                 <!-- logo price-->
                 <div class="scroll-content">
@@ -116,7 +116,7 @@ defined('_JEXEC') or die('Restricted access');
                 <!-- Contact button -->
                 <div class="contact-ctn">
                     <span>Har du spørgsmål om andre produkter, pakker eller priser?</span>
-                    <a class="contact-btn" href="index.php?option=com_contact&view=contact&id=1&Itemid=7">Kontakt os for yderligere information</a>
+                    <a class="webshop-btn" href="index.php?option=com_images&view=portefolje&Itemid=4&active=webshopPortefolje"></a>
                 </div>
                 
             </div>

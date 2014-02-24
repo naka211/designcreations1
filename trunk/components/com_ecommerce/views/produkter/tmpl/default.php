@@ -1,5 +1,13 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
+$db = JFactory::getDBO();
+$query = "SELECT price, promotion_price FROM #__pr_product WHERE id = 3";
+$db->setQuery($query);
+$websitePrice = $db->loadObject();
+
+$query = "SELECT price, promotion_price FROM #__pr_product WHERE id = 10";
+$db->setQuery($query);
+$webshopPrice = $db->loadObject();
 ?>
 <div id="breadcumbs" class="w700 fll clr">
     <a class="home-link" href="index.html" title="Forside">&nbsp;</a>
@@ -20,34 +28,54 @@ defined('_JEXEC') or die('Restricted access');
                 <ul class="product-list">
                     <li>
                         <span class="illus logo"><?php echo $this->list[0]->name;?></span>
-                        <h2 class="red"><?php echo $this->list[0]->name;?></h2>
-                        <span class="current-price">Pris kr <strong><?php echo $this->list[0]->promotion_price;?></strong>,-</span>
-                        <span class="old-price">(Førpris kr <?php echo $this->list[0]->price;?>,-)</span>
+                        <h2 class="red">Logo design</h2>
+                        <?php if($this->list[0]->promotion_price){?>
+                        <span class="current-price">Pris kr <strong><?php echo $this->list[0]->promotion_price;?></strong></span>
+                        <span class="old-price">(Førpris kr <?php echo $this->list[0]->price;?>)</span>
+                        <?php } else {?>
+                        <span class="current-price">Pris kr <strong><?php echo $this->list[0]->price;?></strong></span>
+                        <?php }?>
                     </li>
                     <li>
                         <span class="illus card"><?php echo $this->list[1]->name;?></span>
-                        <h2 class="blue"><?php echo $this->list[1]->name;?></h2>
-                        <span class="current-price">Pris kr <strong><?php echo $this->list[1]->promotion_price;?></strong>,-</span>
-                        <span class="old-price">(Førpris kr <?php echo $this->list[1]->price;?>,-)</span>
+                        <h2 class="blue">Visitkort & Brevpapir<br>design</h2>
+                        <?php if($this->list[1]->promotion_price){?>
+                        <span class="current-price">Pris kr <strong><?php echo $this->list[1]->promotion_price;?></strong></span>
+                        <span class="old-price">(Førpris kr <?php echo $this->list[1]->price;?>)</span>
+                         <?php } else {?>
+                        <span class="current-price">Pris kr <strong><?php echo $this->list[1]->price;?></strong></span>
+                        <?php }?>
                     </li>
+                    <a href="index.php?option=com_images&view=portefolje&Itemid=4&active=websitePortefolje">
                     <li>
                         <span class="illus stationary"><?php echo $this->list[2]->name;?></span>
-                        <h2 class="orange"><?php echo $this->list[2]->name;?></h2>
-                        <span class="current-price">Pris kr <strong><?php echo $this->list[2]->promotion_price;?></strong>,-</span>
-                        <span class="old-price">(Førpris kr <?php echo $this->list[2]->price;?>,-)</span>
+                        <h2 class="orange">Website<br>Templates</h2>
+                        <?php if($websitePrice->promotion_price){?>
+                        <span class="current-price">Pris kr <strong><?php echo $websitePrice->promotion_price;?></strong></span>
+                        <span class="old-price" style="color:#323232;">(Førpris kr <?php echo $websitePrice->price;?>)</span>
+                        <?php } else {?>
+                        <span class="current-price">Pris kr <strong><?php echo $websitePrice->price;?></strong></span>
+                        <?php }?>
                     </li>
+                    </a>
+                    <a href="index.php?option=com_images&view=portefolje&Itemid=4&active=webshopPortefolje">
                     <li>
                         <span class="illus brochure"><?php echo $this->list[3]->name;?></span>
-                        <h2><?php echo $this->list[3]->name;?></h2>
-                        <span class="current-price">Pris kr <strong><?php echo $this->list[3]->promotion_price;?></strong>,-</span>
-                        <span class="old-price">(Førpris kr <?php echo $this->list[3]->price;?>,-)</span>
+                        <h2>Webshop<br>Templates</h2>
+                        <?php if($webshopPrice->promotion_price){?>
+                        <span class="current-price">Pris kr <strong><?php echo $webshopPrice->promotion_price;?></strong></span>
+                        <span class="old-price" style="color:#323232;">(Førpris kr <?php echo $webshopPrice->price;?>)</span>
+                        <?php } else {?>
+                        <span class="current-price">Pris kr <strong><?php echo $webshopPrice->price;?></strong></span>
+                        <?php }?>
                     </li>
+                    </a>
                 </ul>
                 <div class="prd-package-custom">
-                    <p>Du kan selv vælge de produkter, der skal udgøre dit sæt, eller endnu hurtigere - starte med et af vores sæt. 
+                    <!--<p>Du kan selv vælge de produkter, der skal udgøre dit sæt, eller endnu hurtigere - starte med et af vores sæt. 
                     Vi lader dig vælge!</p>
                     <a class="begin-btn" href="index.php?option=com_ecommerce&view=produkpakke&Itemid=2">Begynd</a>
-                    <div class="clr"></div>
+                    <div class="clr"></div>-->
                     <div class="process-link"><a class="more" href="index.php?option=com_ecommerce&view=designproces&Itemid=1">Find ud af, hvordan vores design processen fungerer</a></div>
                 </div>
             </div>

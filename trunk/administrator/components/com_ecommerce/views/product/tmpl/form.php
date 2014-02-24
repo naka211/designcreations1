@@ -73,13 +73,13 @@ function submitbutton(pressbutton){
       <td><?php echo $editor->display( 'description', $this->product->description , '100%', '150', '75', '20' ) ; ?> </td>
     </tr>
     
-    <tr>
+   <!-- <tr>
       <td width="200" align="right" class="key"><label for="imagefile"> <?php echo JText::_( 'Upload price list ' ); ?>: </label>
       </td>
       <td><input type="file" name="pricelist" id="pricelist" size="32"  value="" /> <?php if($this->product->pricelist) echo $this->product->pricelist;?>
       <input type="hidden" name="pricelist1" value="<?php echo $this->product->pricelist; ?>" />
       </td>
-    </tr>
+    </tr>-->
    
     <tr>
       <td width="200" align="right" class="key">Product image:</td>

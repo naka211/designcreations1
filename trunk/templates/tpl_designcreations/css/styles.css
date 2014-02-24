@@ -45,6 +45,10 @@ form p.total-price { width: 228px; text-align: center; font-weight: bold; font-s
 
 .field .package-info { width: 140px;}
 
+.rounded {border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px;}
+
 /*Page*/
 .wrapper {position: relative; min-height: 100%; }
 
@@ -60,6 +64,7 @@ form p.total-price { width: 228px; text-align: center; font-weight: bold; font-s
 	display: block;
 	width: 170px;
 	height: 70px;
+	text-align:center;
 	margin-top: 17px;
 }
 
@@ -112,7 +117,7 @@ form p.total-price { width: 228px; text-align: center; font-weight: bold; font-s
 	white-space: nowrap;
 	height: 48px;
 	padding: 0; 
-	margin: 0 0 0 20px;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -159,7 +164,7 @@ ul#mainMenu li a span {
 	display:block;
 	height: 43px;
 	line-height: 48px;
-	padding: 5px 13px 0 13px;
+	padding: 5px 14px 0;
 	text-align:center;
 }
 
@@ -274,14 +279,14 @@ ul.ui-tabs-nav li a span {
 }
 
 ul.ui-tabs-nav li a span.logo 		{ width: 61px; padding-left: 54px; background-position: 0 -49px; margin-left: 5px;}
-ul.ui-tabs-nav li a span.visitcard 	{ width: 81px; padding-left: 76px; background-position: 0 -272px;}
-ul.ui-tabs-nav li a span.stationary { width: 85px; padding-left: 58px; background-position: 0 -160px;}
-ul.ui-tabs-nav li a span.brochure 	{ width: 80px; padding-left: 80px; padding-right: 3px; background-position: 0 -377px;}
+ul.ui-tabs-nav li a span.visitcard 	{ width: 98px; padding-left: 75px; background-position: 0 -272px;}
+ul.ui-tabs-nav li a span.website { width: 90px; padding-left: 58px; background-position: 0 -160px;}
+ul.ui-tabs-nav li a span.webshop 	{ width: 85px; padding-left: 55px; padding-right: 3px; background-position: 0 -377px;}
 
 ul.ui-tabs-nav li.ui-tabs-selected a span.logo 			{ width: 61px; padding-left: 54px; background-position: 0 0; margin-left: 5px; color: #e20100;}
-ul.ui-tabs-nav li.ui-tabs-selected a span.visitcard 	{ width: 81px; padding-left: 76px; background-position: 0 -220px; color: #0093dd;}
-ul.ui-tabs-nav li.ui-tabs-selected a span.stationary	{ width: 85px; padding-left: 58px; background-position: 0 -108px; color: #ed8b00;}
-ul.ui-tabs-nav li.ui-tabs-selected a span.brochure 		{ width: 80px; padding-left: 80px; padding-right: 3px; background-position: 0 -325px; color:#424242;}
+ul.ui-tabs-nav li.ui-tabs-selected a span.visitcard 	{ width: 98px; padding-left: 75px; background-position: 0 -220px; color: #0093dd;}
+ul.ui-tabs-nav li.ui-tabs-selected a span.website	{ width: 90px; padding-left: 58px; background-position: 0 -108px; color: #ed8b00;}
+ul.ui-tabs-nav li.ui-tabs-selected a span.webshop 		{ width: 85px; padding-left: 55px; padding-right: 3px; background-position: 0 -325px; color:#424242;}
 
 .ui-tabs-hide{ display:none; }
 
@@ -326,23 +331,25 @@ ul.logo-list li 	{float: left; display:inline; margin: 10px 9px ;}
 ul.logo-list li img{ width: 140px; height: 58px;}
 
 ul.card-list, 
-ul.stationary-list,
-ul.brochure-list   	{ list-style: none; padding: 15px 6px 0 6px; margin: 0; overflow: hidden;}
+ul.website-list 	{ list-style: none; padding: 15px 6px 0 6px; margin: 0; overflow: hidden;}
+ul.website-list 	{ padding: 15px 0 0 0;}
 
 .example ul.card-list li 		{float: left; display:inline; margin: 10px 10px 0 15px;}
-ul.stationary-list li,
-ul.brochure-list li	{float: left; display:inline; margin: 8px 6px 0 8px;}
+ul.website-list li {float: left; display:inline; margin: 8px 6px 0 6px;}
 
 ul.card-list li img 		{ width: 180px; height: 147px;}
-ul.stationary-list li img	{ width: 193px; height: 150px;}
-ul.brochure-list li img   	{ width: 190px; height: 150px;}
-
-
+ul.website-list li a.site-thumb {display:block; border: 1px solid #bdbdbd; position:relative; width: 196px; height: 115px; text-align:center;}
+ul.website-list li a.site-thumb span { display:none; width: 80px; height: 20px; padding: 5px; text-align:center; font-size: 20px; color: #333; font-weight: bold; position:absolute; z-index: 1; top: 4px; left: 55px; background: #fff;}
+ul.website-list li a.site-thumb:hover span { display:block;}
+ul.website-list li a.site-thumb img	{ width: 188px; height: 107px; margin-top: 4px;}
+ul.website-list li a.site-thumb:hover img { opacity: 0.6; filter:alpha(opacity=60);}
+ul.website-list .info { background: #e5e5e5; height: 27px; line-height: 26px; color: #333; font-size: 15px; padding-left: 10px; margin-top: 4px;}
+ul.website-list .info a.min-buy-btn { display:block; background:url(../img/min-buy-btn.png) no-repeat; width: 82px; height: 27px; text-indent: -9999px;}
 
 .ui-tabs-panel .package 			{ background-position: 0 -168px; width: 701px; height: 157px; margin: 4px 0 0 3px; position: relative;}
-.ui-tabs-panel .package h2			{ float: left; display:inline; margin: 22px 0 0 25px; padding: 0; overflow: hidden;}
+.ui-tabs-panel .package h2			{ float: left; display:inline; margin: 22px 0 0 25px; padding: 0; overflow: hidden; font-size:24px; text-transform:uppercase;}
 .ui-tabs-panel .package h2 img		{ margin-top: 0; float: left;}
-.ui-tabs-panel .package h2 span		{font: italic 18px/24px Arial, Helvetica, sans-serif; font-weight: normal; float: left; margin-left: 4px;}
+.ui-tabs-panel .package h2 span		{font: italic 18px/24px Arial, Helvetica, sans-serif; font-weight: normal; /*float: left;*/ margin-left: 4px;}
 .ui-tabs-panel .package ul			{list-style: none; padding: 10px 0 0 25px; margin: 0; float: left; clear: both;}
 .ui-tabs-panel .package ul li		{overflow: hidden; background:url(../img/sprites/home_img.png) no-repeat -680px -128px; height: 26px; padding-left: 25px; line-height: 25px; width: 600px;}
 .ui-tabs-panel .package ul li span 	{float: left; display: block; font-size: 14px; font-weight: bold; font-style: italic; padding-right: 3px;}
@@ -396,8 +403,7 @@ ul.brochure-list li img   	{ width: 190px; height: 150px;}
 #portfolio ul.card-list	li 		{margin: 16px 25px 5px 35px;}
 #portfolio ul.card-list	li img  { width: 160px; height: 131px;}
 
-#portfolio ul.stationary-list li,
-#portfolio ul.brochure-list li {margin:8px 10px 0 20px;}
+#portfolio ul.website-list li {margin:8px 14px 6px 14px !important;}
 
 /*---- Priser page ----*/
 #price .price-content { padding: 20px; height: 415px;}
@@ -515,7 +521,7 @@ a.download:hover { text-decoration: none;}
 
 .pagination .dis-pagination-prev { background-position: 0 -38px; margin-right: 10px; }
 
-.pagination .pagination-prev  { background-position: 0 -55px; margin-right: 10px;}
+.pagination .pagination-prev  { background-position: 0 -57px; margin-right: 10px;}
 
 .pagination .current-page { color: #fff; font-weight: 600; border: 1px solid #0092dd; background-position: 0 -19px;}
 
@@ -536,7 +542,7 @@ ul.product-list { list-style: none; padding: 10px 0 0 0; margin: 0; overflow: hi
 ul.product-list li { float: left; display: inline; width: 169px; height: 254px; position: relative; background:url(../img/sprites/bg_prd_box.png) no-repeat top right;}
 
 ul.product-list li span, ul.product-list li h2 {display: block; text-align: center; width: 168px; margin: 0 auto;}
-ul.product-list li h2 { text-transform: uppercase; padding: 10px 0 30px 0;}
+ul.product-list li h2 { text-transform: uppercase; padding: 5px 0 0 0; min-height: 55px;}
 
 ul.product-list li span.illus { height: 110px; margin-top: 15px; text-indent: -9999px; font-size: 0; background: url(../img/sprites/prd_img.png) no-repeat;}
 ul.product-list li span.logo { background-position: 0 0; width: 132px;}
@@ -633,6 +639,12 @@ a.begin-btn:hover 	{background-position: -474px -68px;}
 a.contact-btn 		{width: 378px; height: 56px; background-position: 0 0; }
 a.contact-btn:hover { background-position: 0 -57px;}
 
+a.website-btn 		{width: 378px; height: 58px; background: url(../img/btn_website.png) no-repeat top; display:block; }
+a.website-btn:hover {background-position:bottom;}
+
+a.webshop-btn 		{width: 378px; height: 57px; background: url(../img/btn_webshop.png) no-repeat top; display:block; }
+a.webshop-btn:hover {background-position:bottom;}
+
 .contact-ctn	 	{ width: 380px; margin: 0 auto;}
 .contact-ctn span 	{ display: block; width: 380px; text-align: center; font-weight: bold;}
 
@@ -683,7 +695,7 @@ select#designChoices 		{width: 220px; margin:2px 0 0 30px; padding-left: 2px; }
 #formBoxes form p.logo-link a { color:#008ed1; text-decoration: underline;}
 #formBoxes form p.logo-link a:hover { text-decoration: none;}
 
-.add-cart-btn, #sidebar .buy-btn, span.eller {  display:block; float: left; clear:both;}
+.add-cart-btn, #sidebar a.buy-btn, span.eller {  display:block; float: left; clear:both;}
 .add-cart-btn		 	{ width: 226px; height: 25px; background-position: 0 -685px;}
 .add-cart-btn:hover 	{ background-position: 0 -711px;}
 span.eller				{ background-position: right -739px; width: 60px; height: 25px; margin: 8px 0 0 80px;  }
@@ -729,7 +741,7 @@ a.live-chat { display:block; width: 57px; height: 153px; position: absolute; top
 #footerNav .support-num { padding: 31px 0 0 15px;}
 
 #footerNav .support-num p {line-height: 1em; margin: 0; padding: 0;}
-#footerNav .support-num p.num { padding: 8px 0 3px 0;}
+#footerNav .support-num p.num { padding: 8px 0 3px 0; font-size: 29px; letter-spacing: 4px; line-height: 24px;}
 
 #footerNav .support-num p strong { color: #fff;}
 
@@ -755,6 +767,8 @@ a.live-chat { display:block; width: 57px; height: 153px; position: absolute; top
 #footer p.copyright {float: left;}
 #footer p.info { text-align: center;} 
 #footer a:hover {color: #005da5;}
+
+#thumbPopup {border: 1px solid #bababa; -webkit-box-shadow: 1px 1px 7px rgba(50, 50, 50, 0.75); -moz-box-shadow: 1px 1px 7px rgba(50, 50, 50, 0.75); box-shadow: 1px 1px 7px rgba(50, 50, 50, 0.75); background: #fff; padding: 4px; z-index: 9999;}
 
 
 

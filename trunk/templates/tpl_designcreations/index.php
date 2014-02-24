@@ -9,6 +9,7 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
 <jdoc:include type="head" />
 <?php
 	unset($this->_scripts[$this->baseurl.'/media/system/js/mootools.js']);
+	unset($this->_scripts[$this->baseurl.'/media/system/js/caption.js']);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
@@ -25,6 +26,7 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
 <script src="<?php echo $template_dir;?>js/menu.min.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/jquery.alerts.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo $template_dir;?>js/jquery-ui-1.8.11.custom.min.js" ></script>
+<script src="<?php echo $template_dir;?>js/jquery.thumbhover.js" type="text/javascript"></script>
 <script src="<?php echo $template_dir;?>js/dc.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
@@ -69,12 +71,6 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                         <?php if ($this->countModules('cart')) { ?>
                         <jdoc:include type="modules" name="cart" />
                         <?php } ?>
-                        <div id="cart" class="flr">
-                            <a class="shopping-cart" href="indkobskurv.html">
-                                <span class="link">Indkøbskurven</span>
-                                <span class="cart-info">Du har: 2 &nbsp;|&nbsp; Total: DKK&nbsp; 650,- </span>
-                            </a>
-                        </div>
                         <!--/ End shopping cart-->
                         
                     </div>
@@ -139,16 +135,21 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                             <div class="left-footer fll">
                                 <div class="support-info fll">
                                     <h3><img src="<?php echo $template_dir;?>img/support.png" alt="Gratis support" /></h3>
-                                    <p>
-                                        Du er altid velkommen til at kontakte vores kundeservice, 
-                                        som vil gøre alt for at hjælpe dig. Send en mail til 
-                                        <a href="mailto:support@designcreations.dk">support@designcreations.dk</a>
-                                    </p>
+                                     <?php 
+									$db = JFactory::getDBO();
+									$query = "SELECT introtext FROM #__content WHERE id = 13 AND state = 1";
+									$db->setQuery($query);
+									echo $db->loadResult();
+									?>
+                                   
                                 </div>
                                 <div class="support-num fll">
-                                    <p><strong>Eller ring på:</strong></p>
-                                    <p class="num"><img src="<?php echo $template_dir;?>img/phone_num.png" alt="2772 5079" /></p>
-                                    <p>Mandag - Fredag: 08:00 - 16:00</p>
+                                <?php 
+								$query = "SELECT introtext FROM #__content WHERE id = 5 AND state = 1";
+								$db->setQuery($query);
+								echo $db->loadResult();
+								?>
+                                    
                                 </div>
                             </div>
                             <!-- / end footer support info -->
@@ -157,17 +158,16 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                             <div class="right-footer w260 flr">
                                 <div class="social fll pb5">
                                     <a class="icon" href="#" title="Følg os på Facebook"><img src="<?php echo $template_dir;?>img/fb_icon.png" alt="Facebook" /></a>
-                                    <a class="icon" href="#" title="Følg os på Youtube"><img src="<?php echo $template_dir;?>img/yt_icon.png" alt="Youtube" /></a>
-                                    <a class="icon" href="#" title="Følg os på Twitter"><img src="<?php echo $template_dir;?>img/tw_icon.png" alt="Twitter" /></a>
-                                    <a class="icon" href="#" title="Tilmeld Nyhedsbrev"><img src="<?php echo $template_dir;?>img/newsletter_icon.png" alt="Tilmeld Nyhedsbrev" /></a>
+                                    <a class="icon" href="index.php?option=com_contact&view=contact&id=1&Itemid=7" title="Kontakt"><img src="<?php echo $template_dir;?>img/newsletter_icon.png" alt="Kontakt" /></a>
                                 </div>
                                 <div class="contact-info fll clr">
-                                    <!--<p>
-                                        KONTORADRESSE:<br/>
-                                        Islevdalvej 148  - 2610 Rødovre<br/>
-                                        <a href="mailto:info@designcreations.dk">info@designcreations.dk</a>
-                                    </p>-->
-                                    {module Address}
+                                	 <?php 
+									$query = "SELECT introtext FROM #__content WHERE id = 6 AND state = 1";
+									$db->setQuery($query);
+									echo "<p>".$db->loadResult()."</p>";
+									?>
+                                    
+                                    
                                 </div>
                             </div>
                             <!-- / end footer Social/Contact info-->
@@ -181,8 +181,7 @@ $template_dir = $this->baseurl.'/templates/'.$this->template.'/';
                     <!-- Begin footer -->
                     <div id="footer">
                     	{module Footer}
-                        <!--<p class="copyright fll">Copyright © 2011 <a href="http://www.designcreations.dk">Designcreations.dk</a>. All rights reserved.</p>
-                        <p class="info flr w240">Designed by <a href="http://www.mywebcreations.dk">mywebcreations.dk</a></p>-->
+                        
                     </div>
                     <!-- / end footer -->
                     
