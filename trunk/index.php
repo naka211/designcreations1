@@ -13,7 +13,7 @@
 
 // Set flag that this is a parent file
 define( '_JEXEC', 1 );
-
+error_reporting(0);
 define('JPATH_BASE', dirname(__FILE__) );
 
 define( 'DS', DIRECTORY_SEPARATOR );
